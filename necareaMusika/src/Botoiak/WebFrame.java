@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -60,7 +62,7 @@ public class WebFrame extends JFrame {
 		setBackground(new Color(245, 255, 250));
 		setTitle("Printzipala");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 582, 357);
+		setBounds(100, 100, 615, 397);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -177,27 +179,98 @@ public class WebFrame extends JFrame {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
+		
+		JButton btnSartu = new JButton("Sartu");
+		btnSartu.setBackground(new Color(135, 206, 250));
+		btnSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		
+		JButton button = new JButton("Sartu");
+
+		button.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		button.setBackground(new Color(135, 206, 250));
+		
+		JButton button_1 = new JButton("Sartu");
+		button_1.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		button_1.setBackground(new Color(135, 206, 250));
+		
+		JButton button_2 = new JButton("Sartu");
+		button_2.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		button_2.setBackground(new Color(135, 206, 250));
+		
+		JButton btnPlay = new JButton("Play");
+		btnPlay.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnPlay.setBackground(new Color(135, 206, 250));
+		
+		JButton btnGehitu = new JButton("Gorde");
+
+		btnGehitu.setBackground(new Color(135, 206, 250));
+		btnGehitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		
+		JButton btnGorde = new JButton("Gorde");
+		btnGorde.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnGorde.setBackground(new Color(135, 206, 250));
+		
+		JButton btnGorde_1 = new JButton("Gorde");
+		btnGorde_1.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnGorde_1.setBackground(new Color(135, 206, 250));
+		
+		JButton btnGorde_2 = new JButton("Gorde");
+		btnGorde_2.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnGorde_2.setBackground(new Color(135, 206, 250));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(20)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(18, Short.MAX_VALUE))
-				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(53)
 					.addComponent(lblBilatu)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+					.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnBilatu)
 					.addGap(52))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(20)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(btnSartu, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnPlay, 0, 0, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(18)
+									.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+									.addGap(18))
+								.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnGorde, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+										.addComponent(button, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
+									.addGap(39))))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(52)
+							.addComponent(btnGehitu)))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addGap(18))
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnGorde_1, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+								.addComponent(button_1))
+							.addGap(51)))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane_3, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+							.addGap(30)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnGorde_2, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE))))
+					.addGap(73))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -207,24 +280,40 @@ public class WebFrame extends JFrame {
 						.addComponent(lblBilatu)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBilatu))
-					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
-						.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
 						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE))
-					.addGap(28))
+						.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSartu)
+							.addComponent(btnPlay, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+							.addComponent(button, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+							.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnGehitu)
+						.addComponent(btnGorde_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnGorde, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnGorde_2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(175, 238, 238));
 		scrollPane_3.setColumnHeaderView(panel_5);
 		
-		JLabel lblPlaylistak = new JLabel("PlayList-ak");
+		JLabel lblPlaylistak = new JLabel("PlayList-ak:");
 		lblPlaylistak.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		panel_5.add(lblPlaylistak);
 		
-		JList list_3 = new JList();
+		Vector elemPlaylist=necarea.playlistGuztiak();
+		JList list_3 = new JList(elemPlaylist);
 		scrollPane_3.setViewportView(list_3);
 		
 		JPanel panel_4 = new JPanel();
@@ -235,7 +324,8 @@ public class WebFrame extends JFrame {
 		lblArtistak.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		panel_4.add(lblArtistak);
 		
-		JList list_2 = new JList();
+		Vector elemArtista=necarea.artistaGuztiak();
+		JList list_2 = new JList(elemArtista);
 		scrollPane_2.setViewportView(list_2);
 		
 		JPanel panel_3 = new JPanel();
@@ -246,7 +336,8 @@ public class WebFrame extends JFrame {
 		lblAlbumak.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		panel_3.add(lblAlbumak);
 		
-		JList list_1 = new JList();
+		Vector elemAlbum=necarea.albumGuztiak();
+		JList list_1 = new JList(elemAlbum);
 		scrollPane_1.setViewportView(list_1);
 		
 		JPanel panel_2 = new JPanel();
@@ -257,7 +348,8 @@ public class WebFrame extends JFrame {
 		panel_2.add(lblAbestiak);
 		lblAbestiak.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
-		JList list = new JList();
+		Vector elemAbesti=necarea.abestiGuztiak();
+		JList list = new JList(elemAbesti);
 		scrollPane.setViewportView(list);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -472,5 +564,182 @@ public class WebFrame extends JFrame {
 				dispose();
 			}
 		});	
+		
+		
+		//Boton bilatu
+				btnBilatu.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						String Busqueda=textField.getText();
+						
+						//ABESTI
+						DefaultListModel modeloAbesti = new DefaultListModel();
+						list.removeAll();
+						for(int i=0;i<elemAbesti.size();i++){
+							String s=(String) elemAbesti.get(i);
+							if(s.contains(Busqueda)){
+									modeloAbesti.addElement(s);
+							}
+						}
+						list.setModel(modeloAbesti);
+						
+						//ALBUM
+						DefaultListModel modeloAlbum = new DefaultListModel();
+						list_1.removeAll();
+						for(int i=0;i<elemAlbum.size();i++){
+							String s=(String) elemAlbum.get(i);
+							if(s.contains(Busqueda)){
+									modeloAlbum.addElement(s);
+							}
+						}
+						list_1.setModel(modeloAlbum);
+						
+						
+						//ARTISTA
+						DefaultListModel modeloArtista = new DefaultListModel();
+						list_2.removeAll();
+						for(int i=0;i<elemArtista.size();i++){
+							String s=(String) elemArtista.get(i);
+							if(s.contains(Busqueda)){
+									modeloArtista.addElement(s);
+							}
+						}
+						list_2.setModel(modeloArtista);
+						
+						
+						
+						//PLAYLIST
+						DefaultListModel modeloPlaylist = new DefaultListModel();
+						list_3.removeAll();
+						for(int i=0;i<elemPlaylist.size();i++){
+							String s=(String) elemPlaylist.get(i);
+							if(s.contains(Busqueda)){
+									modeloPlaylist.addElement(s);
+							}
+						}
+						list_3.setModel(modeloPlaylist);						
+					}
+				});
+				
+		//abestian sartu
+		btnSartu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list.getSelectedIndex()!=-1) {
+					AbestiaInfoFrame aInfo=null;
+					try {
+						aInfo= new AbestiaInfoFrame(erabiltzailea,p,(String) list.getSelectedValue());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					aInfo.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
+		//abestia play
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list.getSelectedIndex()!=-1) {
+					PlayerFrame play=null;
+					try {
+						play= new PlayerFrame((String) list.getSelectedValue());
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					play.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
+		//abestia gorde
+		btnGehitu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list.getSelectedIndex()!=-1) {
+					necarea.abestiaGorde(erabiltzailea,(String) list.getSelectedValue());
+				}
+			}
+		});
+		
+		//almunean sartu
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list_1.getSelectedIndex()!=-1) {
+					AlbumInfoFrame albumInfo=null;
+					try {
+						albumInfo= new AlbumInfoFrame(erabiltzailea,p,(String) list_1.getSelectedValue());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					albumInfo.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
+		//albuma gorde
+		btnGorde.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list_1.getSelectedIndex()!=-1) {
+					necarea.albumaGorde(erabiltzailea, (String) list_1.getSelectedValue());
+				}
+			}
+		});
+		
+		//artistan sartu
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list_2.getSelectedIndex()!=-1) {
+					ArtistaInfoFrame artistaInfo=null;
+					try {
+						artistaInfo = new ArtistaInfoFrame(erabiltzailea,p,(String) list_2.getSelectedValue());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					artistaInfo.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
+		//artista gorde
+		btnGorde_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list_2.getSelectedIndex()!=-1) {
+					necarea.artistaGorde(erabiltzailea,(String) list_2.getSelectedValue());
+				}
+			}
+		});
+		
+		//playlistan sartu
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list_3.getSelectedIndex()!=-1) {
+					PlayListInfoFrame plInfo=null;
+					try {
+						plInfo = new PlayListInfoFrame(erabiltzailea,p,(String) list_3.getSelectedValue());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					plInfo.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
+		//playlista gorde
+		btnGorde_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list_3.getSelectedIndex()!=-1) {
+					necarea.playlistGorde(erabiltzailea, (String) list_3.getSelectedValue());
+				}
+			}
+		});
+				
 	}
 }

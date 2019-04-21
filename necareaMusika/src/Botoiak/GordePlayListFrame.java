@@ -8,7 +8,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Vector;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -176,10 +178,6 @@ public class GordePlayListFrame extends JFrame {
 		btnPlaylistanSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnPlaylistanSartu.setBackground(new Color(135, 206, 250));
 		
-		JButton btnPlaylistaErreproduzitu = new JButton("Playlist-a erreproduzitu");
-		btnPlaylistaErreproduzitu.setBackground(new Color(135, 206, 250));
-		btnPlaylistaErreproduzitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
 		textField = new JTextField();
 		textField.setColumns(10);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
@@ -188,15 +186,9 @@ public class GordePlayListFrame extends JFrame {
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(34)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(18)
-							.addComponent(btnPlaylistaErreproduzitu))
-						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnPlaylistanSartu)
-							.addGap(21)))
-					.addContainerGap(37, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+					.addComponent(btnPlaylistanSartu)
+					.addContainerGap(27, Short.MAX_VALUE))
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(67)
 					.addComponent(lblBilatu)
@@ -220,13 +212,12 @@ public class GordePlayListFrame extends JFrame {
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(39)
-							.addComponent(btnPlaylistanSartu)
-							.addGap(27)
-							.addComponent(btnPlaylistaErreproduzitu)))
+							.addComponent(btnPlaylistanSartu)))
 					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		
-		JList list = new JList();
+		Vector elem=necarea.gordeDituenPlayListGuztiak(erabiltzailea);
+		JList list = new JList(elem);
 		list.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		scrollPane.setViewportView(list);
 		panel_1.setLayout(gl_panel_1);
@@ -442,6 +433,40 @@ public class GordePlayListFrame extends JFrame {
 				dispose();
 			}
 		});	
+		
+		
+		//Boton bilatu
+		btnBilatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String Busqueda=textField.getText();
+				DefaultListModel modelo = new DefaultListModel();
+				list.removeAll();
+				for(int i=0;i<elem.size();i++){
+					String s=(String) elem.get(i);
+					if(s.contains(Busqueda)){
+							modelo.addElement(s);
+					}
+				}
+				list.setModel(modelo);
+			}
+		});
+		
+		//playlist-an sartu
+		btnPlaylistanSartu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list.getSelectedIndex()!=-1) {
+					PlayListInfoFrame plInfo=null;
+					try {
+						plInfo = new PlayListInfoFrame(erabiltzailea,p,(String) list.getSelectedValue());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					plInfo.setVisible(true);
+					dispose();
+				}
+			}
+		});
 	}
 
 }

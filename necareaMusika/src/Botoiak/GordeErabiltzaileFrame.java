@@ -8,7 +8,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Vector;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -172,26 +174,21 @@ public class GordeErabiltzaileFrame extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnErabiltzaileanSartu = new JButton("Erabiltzailean sartu");
-		btnErabiltzaileanSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		btnErabiltzaileanSartu.setBackground(new Color(135, 206, 250));
-		
 		textField = new JTextField();
 		textField.setColumns(10);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(34)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
-					.addComponent(btnErabiltzaileanSartu)
-					.addContainerGap(28, Short.MAX_VALUE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(67)
-					.addComponent(lblBilatu)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+							.addGap(34)
+							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(67)
+							.addComponent(lblBilatu)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnBilatu)
 					.addGap(58))
@@ -199,22 +196,18 @@ public class GordeErabiltzaileFrame extends JFrame {
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblBilatu)
-								.addComponent(btnBilatu)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(98)
-							.addComponent(btnErabiltzaileanSartu)))
+					.addContainerGap()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblBilatu)
+						.addComponent(btnBilatu)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		
-		JList list = new JList();
+		Vector elem=necarea.gordeDituenErabiltzaileGuztiak(erabiltzailea);
+		JList list = new JList(elem);
 		list.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		scrollPane.setViewportView(list);
 		panel_1.setLayout(gl_panel_1);
@@ -430,6 +423,23 @@ public class GordeErabiltzaileFrame extends JFrame {
 				dispose();
 			}
 		});	
+		
+		
+		//Boton bilatu
+		btnBilatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String Busqueda=textField.getText();
+				DefaultListModel modelo = new DefaultListModel();
+				list.removeAll();
+				for(int i=0;i<elem.size();i++){
+					String s=(String) elem.get(i);
+					if(s.contains(Busqueda)){
+							modelo.addElement(s);
+					}
+				}
+				list.setModel(modelo);
+			}
+		});
 	}
 
 }
