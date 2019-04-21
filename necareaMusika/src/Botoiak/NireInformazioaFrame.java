@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
-import Taulak.Necarea;
+import necareaMusika.Necarea;
 
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;

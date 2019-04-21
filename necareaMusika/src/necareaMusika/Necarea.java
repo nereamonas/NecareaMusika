@@ -1,9 +1,7 @@
-package Taulak;
+package necareaMusika;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import necareaMusika.Konektatu;
 
 
 public class Necarea {
@@ -31,6 +29,10 @@ public class Necarea {
 	        return Necarea.nireNecarea;
 	    }
 	    
+	    
+	    //Metodoak
+	    
+	//ERABILTZAILEAREKIN    
 	    public boolean pertsonaBilatu(String erabiltzailea) {
 	    	boolean dago=false;
 	    	//TODO

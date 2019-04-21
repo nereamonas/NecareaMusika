@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import Taulak.Necarea;
+import necareaMusika.Necarea;
 
 import java.awt.Color;
 import java.awt.Cursor;
