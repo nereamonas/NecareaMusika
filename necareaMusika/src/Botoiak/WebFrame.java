@@ -169,6 +169,7 @@ public class WebFrame extends JFrame {
 		textField_1.setColumns(10);
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
@@ -181,23 +182,28 @@ public class WebFrame extends JFrame {
 		JScrollPane scrollPane_3 = new JScrollPane();
 		
 		JButton btnSartu = new JButton("Sartu");
+		btnSartu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSartu.setBackground(new Color(135, 206, 250));
 		btnSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton button = new JButton("Sartu");
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		button.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		button.setBackground(new Color(135, 206, 250));
 		
 		JButton button_1 = new JButton("Sartu");
+		button_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_1.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		button_1.setBackground(new Color(135, 206, 250));
 		
 		JButton button_2 = new JButton("Sartu");
+		button_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_2.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		button_2.setBackground(new Color(135, 206, 250));
 		
 		JButton btnPlay = new JButton("Play");
+		btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlay.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnPlay.setBackground(new Color(135, 206, 250));
 		

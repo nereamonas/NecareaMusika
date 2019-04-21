@@ -170,12 +170,14 @@ public class ArtistakFrame extends JFrame {
 		
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnArtistanSartu = new JButton("Artistan sartu");
+		btnArtistanSartu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnArtistanSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnArtistanSartu.setBackground(new Color(135, 206, 250));
 		
@@ -183,6 +185,7 @@ public class ArtistakFrame extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnArtistaJarraituNahi = new JButton("Artista jarraitu nahi dut");
+		btnArtistaJarraituNahi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnArtistaJarraituNahi.setBackground(new Color(135, 206, 250));
 		btnArtistaJarraituNahi.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

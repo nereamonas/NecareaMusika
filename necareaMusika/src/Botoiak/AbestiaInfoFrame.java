@@ -168,6 +168,7 @@ public class AbestiaInfoFrame extends JFrame {
 		lblArtistarenIzena.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnArtistaraJoan = new JButton("Artistara joan");
+		btnArtistaraJoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnArtistaraJoan.setBackground(new Color(135, 206, 250));
 		btnArtistaraJoan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
@@ -187,6 +188,7 @@ public class AbestiaInfoFrame extends JFrame {
 		lblLikeKopurua.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnAbestiaGustatuZait = new JButton("Abestia gustatu zait");
+		btnAbestiaGustatuZait.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiaGustatuZait.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiaGustatuZait.setBackground(new Color(135, 206, 250));
 		
@@ -213,10 +215,12 @@ public class AbestiaInfoFrame extends JFrame {
 		JLabel label_8 = new JLabel(""+necarea.abestiarenLetra(a));
 		
 		JButton btnAbestiaEntzun = new JButton("Abestia entzun");
+		btnAbestiaEntzun.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiaEntzun.setBackground(new Color(135, 206, 250));
 		btnAbestiaEntzun.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnAbestiaGorde = new JButton("Abestia gorde nahi dut");
+		btnAbestiaGorde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiaGorde.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiaGorde.setBackground(new Color(135, 206, 250));
 		

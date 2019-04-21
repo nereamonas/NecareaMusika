@@ -169,12 +169,14 @@ public class PlaylistakFrame extends JFrame {
 		lblBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnPlaylistanSartu = new JButton("Playlist-an sartu");
+		btnPlaylistanSartu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlaylistanSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnPlaylistanSartu.setBackground(new Color(135, 206, 250));
 		
@@ -182,6 +184,7 @@ public class PlaylistakFrame extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnPlaylistaGorde = new JButton("Playlist-a gorde");
+		btnPlaylistaGorde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlaylistaGorde.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnPlaylistaGorde.setBackground(new Color(135, 206, 250));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

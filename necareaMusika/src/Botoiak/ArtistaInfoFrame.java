@@ -185,6 +185,7 @@ public class ArtistaInfoFrame extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		
 		JButton btnDiskoraJoan = new JButton("Diskora joan");
+		btnDiskoraJoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnDiskoraJoan.setBackground(new Color(135, 206, 250));
 		btnDiskoraJoan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
@@ -198,10 +199,12 @@ public class ArtistaInfoFrame extends JFrame {
 		JLabel label_3 = new JLabel(""+necarea.artistarenLikeKop(a));
 		
 		JButton btnLikeEman = new JButton("Like eman");
+		btnLikeEman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLikeEman.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnLikeEman.setBackground(new Color(135, 206, 250));
 		
 		JButton button = new JButton("Artista jarraitu nahi dut");
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		button.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		button.setBackground(new Color(135, 206, 250));

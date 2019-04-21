@@ -173,20 +173,24 @@ public class AbestiakFrame extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnAbestianSartu = new JButton("Abestian sartu");
+		btnAbestianSartu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestianSartu.setBackground(new Color(135, 206, 250));
 		btnAbestianSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnAbestiaE = new JButton("Abestia erreproduzitu");
+		btnAbestiaE.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiaE.setBackground(new Color(135, 206, 250));
 		btnAbestiaE.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnAbestiaGorde = new JButton("Abestia gorde");
+		btnAbestiaGorde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiaGorde.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiaGorde.setBackground(new Color(135, 206, 250));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

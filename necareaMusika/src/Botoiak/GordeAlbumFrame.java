@@ -171,12 +171,14 @@ public class GordeAlbumFrame extends JFrame {
 		
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnAlbumeanSartu = new JButton("Albumean sartu");
+		btnAlbumeanSartu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlbumeanSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAlbumeanSartu.setBackground(new Color(135, 206, 250));
 		

@@ -170,6 +170,7 @@ public class ErabiltzaileakFrame extends JFrame {
 		
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		
@@ -179,6 +180,7 @@ public class ErabiltzaileakFrame extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnErabiltazileaJarraituNahi = new JButton("Erabiltzailea jarraitu nahi dut");
+		btnErabiltazileaJarraituNahi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btnErabiltazileaJarraituNahi.setBackground(new Color(135, 206, 250));
 		btnErabiltazileaJarraituNahi.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));

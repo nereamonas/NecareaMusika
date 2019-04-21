@@ -171,12 +171,14 @@ public class AlbumakFrame extends JFrame {
 		
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnAlbumeanSartu = new JButton("Albumean sartu");
+		btnAlbumeanSartu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlbumeanSartu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAlbumeanSartu.setBackground(new Color(135, 206, 250));
 		
@@ -184,6 +186,7 @@ public class AlbumakFrame extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnAlbumaGorde = new JButton("Album-a gorde");
+		btnAlbumaGorde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlbumaGorde.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAlbumaGorde.setBackground(new Color(135, 206, 250));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

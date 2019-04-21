@@ -169,6 +169,7 @@ public class GordeErabiltzaileFrame extends JFrame {
 		lblBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnBilatu = new JButton("Bilatu");
+		btnBilatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBilatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnBilatu.setBackground(new Color(135, 206, 250));
 		

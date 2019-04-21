@@ -189,18 +189,22 @@ public class PlayListInfoFrame extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnAbestiraJoan = new JButton("Abestira joan");
+		btnAbestiraJoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiraJoan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiraJoan.setBackground(new Color(135, 206, 250));
 		
 		JButton btnAbestiaErreproduzitu = new JButton("Abestia erreproduzitu");
+		btnAbestiaErreproduzitu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiaErreproduzitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiaErreproduzitu.setBackground(new Color(135, 206, 250));
 		
 		JButton btnLikeEman = new JButton("Like eman");
+		btnLikeEman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLikeEman.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnLikeEman.setBackground(new Color(135, 206, 250));
 		
 		JButton btnErabiltzaileaJarraitu = new JButton("Erabiltzailea jarraitu");
+		btnErabiltzaileaJarraitu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnErabiltzaileaJarraitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnErabiltzaileaJarraitu.setBackground(new Color(135, 206, 250));
 		
@@ -220,6 +224,7 @@ public class PlayListInfoFrame extends JFrame {
 		JLabel label_6 = new JLabel(""+necarea.playlistarenDeskribapena(pl));
 		
 		JButton btnPlaylistaGorde = new JButton("Playlista gorde");
+		btnPlaylistaGorde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlaylistaGorde.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnPlaylistaGorde.setBackground(new Color(135, 206, 250));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

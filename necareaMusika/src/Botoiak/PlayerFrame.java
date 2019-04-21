@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Cursor;
 
 
 public class PlayerFrame extends JFrame {
@@ -65,24 +66,29 @@ public class PlayerFrame extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		
 		JButton btnPausa = new JButton("Pausa");
+		btnPausa.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPausa.setBackground(new Color(135, 206, 250));
 		btnPausa.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
 		JButton btnPlay = new JButton("Play");
+		btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 
 		btnPlay.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnPlay.setBackground(new Color(135, 206, 250));
 		
 		JButton btnJarraitu = new JButton("Jarraitu");
+		btnJarraitu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnJarraitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnJarraitu.setBackground(new Color(135, 206, 250));
 		
 		JButton btnStop = new JButton("Stop");
+		btnStop.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnStop.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnStop.setBackground(new Color(135, 206, 250));
 		
 		JButton btnItxi = new JButton("Itxi");
+		btnItxi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnItxi.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnItxi.setBackground(new Color(135, 206, 250));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

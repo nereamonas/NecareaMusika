@@ -190,14 +190,17 @@ public class AlbumInfoFrame extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnAbestiraJoan = new JButton("Abestira joan");
+		btnAbestiraJoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiraJoan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiraJoan.setBackground(new Color(135, 206, 250));
 		
 		JButton btnAbestiraErreproduzitu = new JButton("Abestia erreproduzitu");
+		btnAbestiraErreproduzitu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiraErreproduzitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiraErreproduzitu.setBackground(new Color(135, 206, 250));
 		
 		JButton btnArtistaraJoan = new JButton("Artistara joan");
+		btnArtistaraJoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnArtistaraJoan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnArtistaraJoan.setBackground(new Color(135, 206, 250));
 		
@@ -217,10 +220,12 @@ public class AlbumInfoFrame extends JFrame {
 		JLabel label_6 = new JLabel(""+necarea.albumarenAbestiKop(a));
 		
 		JButton btnAlbumaGordeNahi = new JButton("Albuma gorde nahi dut");
+		btnAlbumaGordeNahi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlbumaGordeNahi.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAlbumaGordeNahi.setBackground(new Color(135, 206, 250));
 		
 		JButton btnLikeEman = new JButton("Like eman");
+		btnLikeEman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLikeEman.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnLikeEman.setBackground(new Color(135, 206, 250));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
