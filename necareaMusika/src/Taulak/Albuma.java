@@ -8,7 +8,7 @@ public class Albuma {
 	private int abestiKop;
 	private ArrayList<Abestia> abestiak;//??
 	private ArrayList<String> generoak;//??
-	
+	 
 	public Albuma(int pId, String pArKode, String pIzena, Time pDenb, Date pData, int pLike, int pAbKop) {
 		this.id=pId;
 		this.artistaKode=pArKode;

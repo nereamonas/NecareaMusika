@@ -1,5 +1,5 @@
 package Taulak;
-
+ 
 import java.util.ArrayList;
 
 public class Artista {

@@ -11,7 +11,7 @@ import Taulak.Albuma;
 import Taulak.Artista;
 import Taulak.Erabiltzaile;
 import Taulak.PlayList;
-
+ 
 
 public class Necarea {
 
