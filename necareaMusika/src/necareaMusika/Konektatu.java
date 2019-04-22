@@ -18,9 +18,9 @@ public class Konektatu {
 	public Konektatu() throws SQLException {
 		this.konexioa=DriverManager.getConnection(zerbitzaria+urltime,erabiltzailea,pasahitza);
 		if(this.konexioa!=null) {
-			System.out.print("Ondo sortu da konexioa");
+			System.out.println("Ondo sortu da konexioa");
 		}else {
-			System.out.print("Konexioa ez da ondo sortu");
+			System.out.println("Konexioa ez da ondo sortu");
 		}
 		/*Hasi no funciona bn
 		 * try {

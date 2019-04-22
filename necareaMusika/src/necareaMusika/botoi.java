@@ -5,9 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import Taulak.Izenak;
+import javax.swing.border.EmptyBorder; 
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -37,8 +35,10 @@ public class botoi extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public botoi() {
+	public botoi() throws SQLException {
+		Necarea necarea=Necarea.getNecarea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -73,13 +73,13 @@ public class botoi extends JFrame {
 		btnPrint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("---------------------");
-				Izenak i= new Izenak("h","hh");
 				try {
-					i.izenakHartu();
+					necarea.izenakHartu();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
 			}
 		});
 		panel.add(btnPrint);
@@ -88,11 +88,10 @@ public class botoi extends JFrame {
 		btnEzabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("---------------------");
-				Izenak i1= new Izenak("h","h");
-				Izenak i= new Izenak("1","h1");
-				i1.izenaEzabatu(i);
+				necarea.izenaEzabatu("h1");
+
 				try {
-					i1.izenakHartu();
+					necarea.izenakHartu();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -105,11 +104,9 @@ public class botoi extends JFrame {
 		btnGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("---------------------");
-				Izenak i1= new Izenak("h","h");
-				Izenak i= new Izenak("1","h1");
-				i1.izenaGehitu(i);
+				necarea.izenaGehitu("1", "h1");
 				try {
-					i1.izenakHartu();
+					necarea.izenakHartu();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

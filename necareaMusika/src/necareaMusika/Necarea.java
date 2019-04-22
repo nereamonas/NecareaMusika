@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import Taulak.Abestia;
 import Taulak.Albuma;
 import Taulak.Artista;
@@ -30,6 +32,9 @@ public class Necarea {
 	    private Necarea() throws SQLException { 
 	    	Konektatu k= new Konektatu();
 	    	this.konexioa=k.getConnection();
+	    	this.erabiltzaileak= new ArrayList<Erabiltzaile>();
+	    	this.artistak= new ArrayList<Artista>();
+	    	this.playlistak= new ArrayList<PlayList>();
 	    }    
 	    
 	    public static synchronized Necarea getNecarea() throws SQLException {
@@ -50,13 +55,60 @@ public class Necarea {
 		        String user = rs.getString("USER");
 		        String pasahitza = rs.getString("PASAHITZA");
 		        String email = rs.getString("EMAIL");
-		        System.out.println(String.format("%S, %s", user, pasahitza,email)); //?
+		        System.out.println(String.format("%s, %s, %s", user, pasahitza,email)); //?
 		        Erabiltzaile e= new Erabiltzaile(user,pasahitza,email);
 		        this.erabiltzaileak.add(e);
 		    }
 		    rs.close();
 		    statement.close();
 		}
+		
+		
+		//------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------
+	    //LUEGO BORRARLO DE AQUÍ
+		//LOS METODOS DE AÑADIR, BORRAR Y COGER DE IZENA - EJEMPLO
+		public void izenakHartu() throws SQLException {
+			Connection konexioa=Konektatu.getConnection();
+		    java.sql.Statement statement = konexioa.createStatement();
+		    ResultSet rs = statement.executeQuery("SELECT * FROM izenak");
+		    while (rs.next()) {
+		        String kodea = rs.getString("KODEA");
+		        String izena = rs.getString("IZENA");
+		        System.out.println(String.format("%S, %s", kodea, izena));
+		    }
+		    rs.close();
+		    statement.close();
+		}
+		
+		public void izenaGehitu(String kodea, String izena) {
+			 try {
+				 Connection konexioa=Konektatu.getConnection();
+			     String Query = "INSERT INTO " + "Izenak" + " VALUES("+ "\"" + kodea + "\", "+ "\"" + izena + "\")";
+			     java.sql.Statement st = konexioa.createStatement();
+			            st.executeUpdate(Query);
+			            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+			 } catch (SQLException ex) {
+			            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
+			 }
+		}
+		
+		
+		public void izenaEzabatu(String izena) {
+		        try {
+		    		Connection konexioa=Konektatu.getConnection();
+		            String Query = "DELETE FROM " + "IZENAK" + " WHERE IZENA = \"" + izena + "\"";
+		            java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		 
+		        } catch (SQLException ex) {
+		            System.out.println(ex.getMessage());
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da izena ezabatzean");
+		        }
+		    }
+	    
+		//------------------------------------------------------------------------------------
+		//------------------------------------------------------------------------------------
 	    
 	    
 	    
@@ -68,16 +120,8 @@ public class Necarea {
 	    
 	    
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+	    //LOS COMENTO XQ DA ERRORES. PERO ESTOS SON LOS METODOS QUE TENEMOS QUE INPLEMENTAR
+	    /*
 	    
 	    
 	    
@@ -427,5 +471,7 @@ public class Necarea {
 	   public void playlistGorde(String erabiltzailea,String playlist) {
 		   //guarda el album en los albumes q le gustan
 	   }
+	   
+	   */
 
 }
