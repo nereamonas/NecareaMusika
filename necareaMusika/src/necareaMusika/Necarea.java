@@ -1,12 +1,15 @@
 package necareaMusika;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import Taulak.Abestia;
 import Taulak.Albuma;
 import Taulak.Artista;
+import Taulak.Erabiltzaile;
 import Taulak.PlayList;
 
 
@@ -17,8 +20,9 @@ public class Necarea {
 	    
 	    private Connection konexioa=null;
 	    
-
-	    
+	    private ArrayList<Erabiltzaile> erabiltzaileak;
+	    private ArrayList<Artista> artistak;
+	    private ArrayList<PlayList> playlistak;
 	    
 	            
 	//eraikitzailea
@@ -37,6 +41,46 @@ public class Necarea {
 	    
 	    
 	    //Metodoak
+	    //esto era una prueba pero no puedo probarla jajaj
+		public void erabiltzaileakHartu() throws SQLException {
+			Connection konexioa=Konektatu.getConnection();
+		    java.sql.Statement statement = konexioa.createStatement();
+		    ResultSet rs = statement.executeQuery("SELECT * FROM erabiltzaile");
+		    while (rs.next()) {
+		        String user = rs.getString("USER");
+		        String pasahitza = rs.getString("PASAHITZA");
+		        String email = rs.getString("EMAIL");
+		        System.out.println(String.format("%S, %s", user, pasahitza,email)); //?
+		        Erabiltzaile e= new Erabiltzaile(user,pasahitza,email);
+		        this.erabiltzaileak.add(e);
+		    }
+		    rs.close();
+		    statement.close();
+		}
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 	//ERABILTZAILEAREKIN    
 	    public boolean pertsonaBilatu(String erabiltzailea) {
