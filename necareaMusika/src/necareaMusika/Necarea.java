@@ -1,9 +1,12 @@
 package necareaMusika;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -46,7 +49,49 @@ public class Necarea {
 	    
 	    
 	    //Metodoak
-	    //esto era una prueba pero no puedo probarla jajaj
+	    //CARGAR EN EL ORDEN QUE ESTAN PUESTOS
+		
+		public void artistakHartu() throws SQLException {
+			Connection konexioa=Konektatu.getConnection();
+		    java.sql.Statement statement = konexioa.createStatement();
+		    ResultSet rs = statement.executeQuery("SELECT * FROM artista");
+		    while (rs.next()) {
+		        String kodea = rs.getString("KODEA");
+		        String biografia = rs.getString("BIOGRAFIA");
+		        int likeKop = rs.getInt("LIKEKOP");
+		        String taldeIzena = rs.getString("TALDEIZENA");
+		        System.out.println(String.format("%s, %s, %d, %s",kodea,biografia, likeKop,taldeIzena)); //?
+		        Artista a= new Artista(kodea,biografia,likeKop,taldeIzena);
+		        this.artistak.add(a);
+		        a.bereAlbumakHartu(kodea);
+		        a.bereIzenakHartu(kodea);
+		        a.bereKontzertuakHartu(kodea);
+		    }
+		    rs.close();
+		    statement.close();
+		}
+		
+		public void playlistakHartu() throws SQLException {
+			Connection konexioa=Konektatu.getConnection();
+		    java.sql.Statement statement = konexioa.createStatement();
+		    ResultSet rs = statement.executeQuery("SELECT * FROM playlist");
+		    while (rs.next()) {
+		        int id = rs.getInt("ID");
+		        String erUser = rs.getString("ERABILTZAILEUSER");
+		        String izena = rs.getString("IZENA");
+		        Time denbora = rs.getTime("DENBORA");
+		        Date data = rs.getDate("DATA");
+		        int likeKop = rs.getInt("LIKEKOP");
+		        String deskr = rs.getString("DESKRIBAPENA");
+		        System.out.println(String.format("%d,%s, %s,%t,%t %d, %s",id,erUser,izena,denbora,data, likeKop,deskr)); //?
+		        PlayList p= new PlayList(id,erUser,izena,denbora,data, likeKop,deskr);
+		        this.playlistak.add(p);
+		        p.bereAbestiakHartu();
+		    }
+		    rs.close();
+		    statement.close();
+		}
+		
 		public void erabiltzaileakHartu() throws SQLException {
 			Connection konexioa=Konektatu.getConnection();
 		    java.sql.Statement statement = konexioa.createStatement();
@@ -58,9 +103,91 @@ public class Necarea {
 		        System.out.println(String.format("%s, %s, %s", user, pasahitza,email)); //?
 		        Erabiltzaile e= new Erabiltzaile(user,pasahitza,email);
 		        this.erabiltzaileak.add(e);
+		        e.bereArtistakHartu(user);
+		        e.bereAlbumakHartu(user);
+		        e.bereAbestiakHartu(user);
+		        e.berePlaylistakHartu(user);
+		        e.bereJarraituakHartu(user);
+		        e.bereJarraitzaileakHartu(user);
 		    }
 		    rs.close();
 		    statement.close();
+		}
+		
+		
+		
+		
+		public Abestia bilatuAbestia(String arKode,int abId) {
+			boolean aurkitua=false;
+			Iterator<Artista> itr=artistak.iterator();
+			Artista a=null;
+			Abestia ab=null;
+			while(itr.hasNext()&&!aurkitua) {
+				a=itr.next();
+				if(a.kodeBerdinaDu(arKode)) {
+					ab=a.bilatuAbestia(abId);
+					if (ab!=null) {
+						aurkitua=true;
+					}
+				}
+			}
+			return ab;
+		}
+		
+		public Artista bilatuArtista(String arKode) {
+			boolean aurkitua=false;
+			Iterator<Artista> itr=artistak.iterator();
+			Artista a=null;
+			while(itr.hasNext()&&!aurkitua) {
+				a=itr.next();
+				if(a.kodeBerdinaDu(arKode)) {
+					aurkitua=true;
+				}
+			}
+			return a;
+		}
+		
+		public Albuma bilatuAlbuma(String arKode, int alId) {
+			boolean aurkitua=false;
+			Iterator<Artista> itr=artistak.iterator();
+			Artista a=null;
+			Albuma al=null;
+			while(itr.hasNext()&&!aurkitua) {
+				a=itr.next();
+				if(a.kodeBerdinaDu(arKode)) {
+					al=a.bilatuAlbuma(alId);
+					if (al!=null) {
+						aurkitua=true;
+					}
+				}
+			}
+			return al;
+		}
+		
+		public PlayList bilatuPlayLista(int plId) {
+			boolean aurkitua=false;
+			Iterator<PlayList> itr=playlistak.iterator();
+			PlayList pl=null;
+			while(itr.hasNext()&&!aurkitua) {
+				pl=itr.next();
+				if(pl.kodeBerdinaDu(plId)) {
+					aurkitua=true;
+				}
+			}
+			return pl;
+		}
+		
+		public Erabiltzaile bilatuErabiltzailea(String user) {
+			boolean aurkitua=false;
+			Iterator<Erabiltzaile> itr=erabiltzaileak.iterator();
+			Erabiltzaile e=null;
+			while(itr.hasNext()&&!aurkitua) {
+				e=itr.next();
+				if(e.userBerdinaDu(user)) {
+					aurkitua=true;
+				}
+			}
+			return e;
 		}
 		
 		

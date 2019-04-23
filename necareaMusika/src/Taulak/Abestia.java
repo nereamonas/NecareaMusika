@@ -1,5 +1,5 @@
 package Taulak;
- 
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -23,5 +23,9 @@ public class Abestia {
 		this.likeKop=pLike;
 		this.letra=pLetra;
 		this.albumId=pAlId;
+	}
+	
+	public boolean idBerdinaDu(int abId) {
+		return abId==this.id;
 	}
 }
