@@ -171,7 +171,7 @@ public class SartuKontuanFrame extends JFrame {
 						boolean dago=necarea.pertsonaBilatu(erabiltzailea);
 						if (dago) {
 							if(necarea.pasahitzaKonprobatu(erabiltzailea,pasahitza)) {
-								WebFrame web=null;
+								WebFrame web=null; 
 								try {
 									web = new WebFrame(erabiltzailea,pasahitza);
 								} catch (SQLException e) {
@@ -182,11 +182,12 @@ public class SartuKontuanFrame extends JFrame {
 								dispose();
 							}else {
 								label.setText("Pasahitza ez da egokia, berriro sahiatu");
-								textField_1.setBackground(Color.RED);
+								
 								pwdLll.setBackground(Color.RED);
 							}
 						}else {
 							label.setText("Ez da erabiltzailea existitzen");
+							textField_1.setBackground(Color.RED);
 							JButton btnCrear = new JButton("Erabiltzailea sortu nahi duzu?");
 							panel_1.add(btnCrear);
 							btnCrear.addActionListener(new ActionListener() {
