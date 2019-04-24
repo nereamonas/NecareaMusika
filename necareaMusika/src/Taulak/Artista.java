@@ -226,9 +226,9 @@ public class Artista {
 		return bek;
 	}
 	
-	public Vector kontzertuakBektoreanSartu(Vector bek) {
+	public Vector kontzertuakBektoreanSartu(Vector bek) throws SQLException {
 		for(int i=0;i<this.kontzertuak.size();i++) {
-			   String s=this.kontzertuak.get(i).getNon();
+			   String s=this.kontzertuak.get(i).informazioa();
 			   bek.addElement(s);
 		   }
 		   return bek;

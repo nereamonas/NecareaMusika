@@ -1,8 +1,11 @@
 package Taulak;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.print.attribute.DateTimeSyntax;
+
+import necareaMusika.Necarea;
 
 public class Kontzertua {
 	private String non;
@@ -18,8 +21,9 @@ public class Kontzertua {
 	public void nonInprimatu() {
 		System.out.print(this.non);
 	}
-	
-	public String getNon() {
-		return this.non;
+
+	public String informazioa() throws SQLException {
+		Necarea necarea=Necarea.getNecarea();
+		return (necarea.bilatuArtista(artistaKode).getIzena() + ", " + this.non + ", " + this.noiz);
 	}
 }

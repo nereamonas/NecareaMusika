@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -300,10 +301,11 @@ public class ArtistaInfoFrame extends JFrame {
 					.addGap(16))
 		);
 		
-		JList list_1 = new JList();
+		
+		JList list_1 = new JList(necarea.artistaDituenAlbumGuztiak(artista));
 		scrollPane_1.setViewportView(list_1);
 		
-		JList list = new JList();
+		JList list = new JList(necarea.artistarenPartaideGuztiak(artista));
 		scrollPane.setViewportView(list);
 		panel_1.setLayout(gl_panel_1);
 		

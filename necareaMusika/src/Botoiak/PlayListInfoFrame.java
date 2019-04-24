@@ -340,7 +340,8 @@ public class PlayListInfoFrame extends JFrame {
 					.addGap(10))
 		);
 		
-		JList list = new JList();
+		
+		JList list = new JList(necarea.playlistarenAbestiak(necarea.bilatuPlaylistIzenaz(playlist)));
 		scrollPane.setViewportView(list);
 		panel_1.setLayout(gl_panel_1);
 		

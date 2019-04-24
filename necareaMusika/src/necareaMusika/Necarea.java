@@ -424,7 +424,7 @@ public class Necarea {
 		   return emaitza;
 	   }
 	   
-	   public Vector kontzertuGuztiak() {
+	   public Vector kontzertuGuztiak() throws SQLException {
 		   Vector emaitza= new Vector();
 		   for(int i=0;i<this.artistak.size();i++) {
 			   emaitza=this.artistak.get(i).kontzertuakBektoreanSartu(emaitza);
@@ -716,7 +716,5 @@ public class Necarea {
 		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzailea);
 		   e.gehituPlaylist(pl);
 	   }
-	   
-	   
 
 }
