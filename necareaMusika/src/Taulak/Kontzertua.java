@@ -14,4 +14,12 @@ public class Kontzertua {
 		this.noiz=pNoiz;
 		this.artistaKode=pArKode;
 	}
+	
+	public void nonInprimatu() {
+		System.out.print(this.non);
+	}
+	
+	public String getNon() {
+		return this.non;
+	}
 }

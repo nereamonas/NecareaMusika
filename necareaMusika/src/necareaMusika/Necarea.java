@@ -50,6 +50,11 @@ public class Necarea {
 	    
 	    //Metodoak
 	    //CARGAR EN EL ORDEN QUE ESTAN PUESTOS
+	    public void guztiaHartu() throws SQLException {
+	    	this.artistakHartu();
+	    	this.playlistakHartu();
+	    	this.erabiltzaileakHartu();
+	    }
 		
 		public void artistakHartu() throws SQLException {
 			Connection konexioa=Konektatu.getConnection();
@@ -60,7 +65,7 @@ public class Necarea {
 		        String biografia = rs.getString("BIOGRAFIA");
 		        int likeKop = rs.getInt("LIKEKOP");
 		        String taldeIzena = rs.getString("TALDEIZENA");
-		        System.out.println(String.format("%s, %s, %d, %s",kodea,biografia, likeKop,taldeIzena)); //?
+		        //System.out.println(String.format("%s, %s, %d, %s",kodea,biografia, likeKop,taldeIzena)); //?
 		        Artista a= new Artista(kodea,biografia,likeKop,taldeIzena);
 		        this.artistak.add(a);
 		        a.bereAlbumakHartu(kodea);
@@ -83,7 +88,7 @@ public class Necarea {
 		        Date data = rs.getDate("DATA");
 		        int likeKop = rs.getInt("LIKEKOP");
 		        String deskr = rs.getString("DESKRIBAPENA");
-		        System.out.println(String.format("%d,%s, %s,%t,%t %d, %s",id,erUser,izena,denbora,data, likeKop,deskr)); //?
+		        //System.out.println(String.format("%d,%s, %s,%t,%t %d, %s",id,erUser,izena,denbora,data, likeKop,deskr)); //?
 		        PlayList p= new PlayList(id,erUser,izena,denbora,data, likeKop,deskr);
 		        this.playlistak.add(p);
 		        p.bereAbestiakHartu();
@@ -100,7 +105,7 @@ public class Necarea {
 		        String user = rs.getString("USER");
 		        String pasahitza = rs.getString("PASAHITZA");
 		        String email = rs.getString("EMAIL");
-		        System.out.println(String.format("%s, %s, %s", user, pasahitza,email)); //?
+		        //System.out.println(String.format("%s, %s, %s", user, pasahitza,email)); //?
 		        Erabiltzaile e= new Erabiltzaile(user,pasahitza,email);
 		        this.erabiltzaileak.add(e);
 		        e.bereArtistakHartu(user);
@@ -190,6 +195,51 @@ public class Necarea {
 			return e;
 		}
 		
+		public void printArtistak() {
+			Iterator<Artista> itr=this.artistak.iterator();
+			Artista a=null;
+			int kont=1;
+			while(itr.hasNext()) {
+				a=itr.next();
+				System.out.println();
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println();
+				System.out.println(kont+". ARTISTA:");
+				a.zureDatuakInprimatu();
+				kont++;
+			}
+		}
+		
+		public void printPlaylistak() {
+			Iterator<PlayList> itr=this.playlistak.iterator();
+			PlayList pl=null;
+			int kont=1;
+			while(itr.hasNext()) {
+				pl=itr.next();
+				System.out.println();
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println();
+				System.out.println(kont+". PLAYLISTA:");
+				pl.zureDatuakInprimatu();
+				kont++;
+			}
+		}
+		
+		public void printErabiltzaileak() {
+			Iterator<Erabiltzaile> itr=this.erabiltzaileak.iterator();
+			Erabiltzaile e=null;
+			int kont=1;
+			while(itr.hasNext()) {
+				e=itr.next();
+				System.out.println();
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println();
+				System.out.println(kont+". ERABILTZAILEA:");
+				e.zureDatuakInprimatu();
+				kont++;
+			}
+		}
+		
 		
 		//------------------------------------------------------------------------------------
 		//------------------------------------------------------------------------------------
@@ -248,7 +298,7 @@ public class Necarea {
 	    
 	    
 	    //LOS COMENTO XQ DA ERRORES. PERO ESTOS SON LOS METODOS QUE TENEMOS QUE INPLEMENTAR
-	    /*
+	    
 	    
 	    
 	    
@@ -256,32 +306,74 @@ public class Necarea {
 	//ERABILTZAILEAREKIN    
 	    public boolean pertsonaBilatu(String erabiltzailea) {
 	    	boolean dago=false;
-	    	//TODO
-	    	
+	    	Iterator<Erabiltzaile> itr=this.erabiltzaileak.iterator();
+	    	Erabiltzaile e=null;
+	    	while(itr.hasNext()&&!dago) {
+	    		e=itr.next();
+	    		if(e.userBerdinaDu(erabiltzailea)) {
+	    			dago=true;
+	    		}
+	    	}
 	    	return dago;
 	    }
 	    
 	    public boolean pasahitzaKonprobatu(String erabiltzailea, String pasahitza) {
 	    	boolean ondo=false;
-	    	//TODO
+	    	boolean aurkitua=false;
+	    	Iterator<Erabiltzaile> itr=this.erabiltzaileak.iterator();
+	    	Erabiltzaile e=null;
+	    	while(itr.hasNext()&&!aurkitua) {
+	    		e=itr.next();
+	    		if(e.userBerdinaDu(erabiltzailea)) {
+	    			if(e.pasahitzaKonprobatu(pasahitza)) {
+	    				ondo=true;
+	    			}
+	    			aurkitua=true;
+	    		}
+	    	}
 	    	
 	    	return ondo;
 	    }
 	    
-	    public void erabiltzaileaGehitu(String erabiltzailea,String pasahitza) {
-	    	
-	    	
+	    public void erabiltzaileaGehitu(String erabiltzailea,String pasahitza, String email) {//HAY QUE AÑADIR PARA QUE META EMAIL EN INTERFACES
+	    	Erabiltzaile e=new Erabiltzaile(erabiltzailea,pasahitza,email);
+	    	this.erabiltzaileak.add(e);
+	    	try {
+				 Connection konexioa=Konektatu.getConnection();
+			     String Query = "INSERT INTO " + "erabiltzaile" + " VALUES("+ "\"" + erabiltzailea + "\", "+ "\"" + pasahitza + "\", "+"\""+ email+ "\")";
+			     java.sql.Statement st = konexioa.createStatement();
+			            st.executeUpdate(Query);
+			            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+			 } catch (SQLException ex) {
+			            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
+			 }
 	    }
 	    
 	   public void pasahitzaAldatu(String erabiltzailea,String pasahitza) {
-		   
+	    	boolean aurkitua=false;
+	    	Iterator<Erabiltzaile> itr=this.erabiltzaileak.iterator();
+	    	Erabiltzaile e=null;
+	    	while(itr.hasNext()&&!aurkitua) {
+	    		e=itr.next();
+	    		if(e.userBerdinaDu(erabiltzailea)) {
+	    			e.pasahitzaAldatu(pasahitza);
+	    			aurkitua=true;
+	    		}
+	    	}
 	   }
 	   
 	   public String erabiltzailearenEMail(String e) {
 		   String mail="";
-		   //bilatu persona
-		   //persona.getEmail
-		   
+		   boolean aurkitua=false;
+	    	Iterator<Erabiltzaile> itr=this.erabiltzaileak.iterator();
+	    	Erabiltzaile er=null;
+	    	while(itr.hasNext()&&!aurkitua) {
+	    		er=itr.next();
+	    		if(er.userBerdinaDu(e)) {
+	    			er.getEmail();
+	    			aurkitua=true;
+	    		}
+	    	}
 		   return mail;
 	   }
 	   
@@ -291,37 +383,52 @@ public class Necarea {
 	//INPRIMIR TODO LO QUE HAY   
 	   public Vector erabiltzaileGuztiak() {
 		   Vector emaitza= new Vector();
-		   
+		   for(int i=0;i<this.erabiltzaileak.size();i++) {
+			   String s=this.erabiltzaileak.get(i).getUser();
+			   emaitza.addElement(s);
+		   }
 		   return emaitza;
 	   }
 	   
 	   public Vector abestiGuztiak() {
 		   Vector emaitza= new Vector();
-		   
+		   for(int i=0;i<this.artistak.size();i++) {
+			   emaitza=this.artistak.get(i).abestiakBektoreanSartu(emaitza);
+		   }
 		   return emaitza;
 	   }
 	   
 	   public Vector albumGuztiak() {
 		   Vector emaitza= new Vector();
-		   
+		   for(int i=0;i<this.artistak.size();i++) {
+			   emaitza=this.artistak.get(i).albumakBektoreanSartu(emaitza);
+		   }
 		   return emaitza;
 	   }
 	   
 	   public Vector artistaGuztiak() {
 		   Vector emaitza= new Vector();
-		   
+		   for(int i=0;i<this.artistak.size();i++) {
+			   String s=this.artistak.get(i).getIzena();
+			   emaitza.addElement(s);
+		   }
 		   return emaitza;
 	   }
 	   
 	   public Vector playlistGuztiak() {
 		   Vector emaitza= new Vector();
-		   
+		   for(int i=0;i<this.playlistak.size();i++) {
+			   String s=this.playlistak.get(i).getIzena();
+			   emaitza.addElement(s);
+		   }
 		   return emaitza;
 	   }
 	   
 	   public Vector kontzertuGuztiak() {
 		   Vector emaitza= new Vector();
-		   
+		   for(int i=0;i<this.artistak.size();i++) {
+			   emaitza=this.artistak.get(i).kontzertuakBektoreanSartu(emaitza);
+		   }
 		   return emaitza;
 	   }
 	   
@@ -329,57 +436,60 @@ public class Necarea {
 	 //INPRIMIR LOS QUE LA PERSONA SIGUE
 	   
 	   public Vector gordeDituenErabiltzaileGuztiak(String erabiltzaile) {
-		   Vector emaitza= new Vector();
-		   
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzaile);
+		   Vector emaitza=e.jarraituBektorea();
 		   return emaitza;
 	   }
 	   
 	   public Vector gordeDituenAbestiGuztiak(String erabiltzaile) {
-		   Vector emaitza= new Vector();
-		   
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzaile);
+		   Vector emaitza=e.abestiBektorea();
 		   return emaitza;
 	   }
 	   
 	   public Vector gordeDituenAlbumGuztiak(String erabiltzaile) {
-		   Vector emaitza= new Vector();
-		   
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzaile);
+		   Vector emaitza=e.albumBektorea();
 		   return emaitza;
 	   }
 	   
 	   public Vector gordeDituenPlayListGuztiak(String erabiltzaile) {
-		   Vector emaitza= new Vector();
-		   
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzaile);
+		   Vector emaitza=e.playlistBektorea();
 		   return emaitza;
 	   }
 	   
 	   public Vector gordeDituenArtistaGuztiak(String erabiltzaile) {
-		   Vector emaitza= new Vector();
-		   
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzaile);
+		   Vector emaitza=e.artistaBektorea();
 		   return emaitza;
 	   }
 	   
 	   //otros inprimir:
 	   public Vector albumaDituenAbestiGuztiak(String album) {
+		   Albuma a=this.bilatuAlbumaIzenaz(album);
 		   Vector emaitza= new Vector();
-		   
+		   emaitza=a.abestiakBektoreanSartu(emaitza);
 		   return emaitza;
 	   }
 	   
 	   public Vector artistaDituenAlbumGuztiak(String artista) {
+		   Artista a=this.artistaBilatuIzenaz(artista);
 		   Vector emaitza= new Vector();
-		   
+		   emaitza=a.albumakBektoreanSartu(emaitza);
 		   return emaitza;
 	   }
 	   
 	   public Vector artistarenPartaideGuztiak(String artista) {
+		   Artista a=this.artistaBilatuIzenaz(artista);
 		   Vector emaitza= new Vector();
-		   
+		   emaitza=a.izenakBektoreanSartu(emaitza);
 		   return emaitza;
 	   }
 	   
 	   public Vector playlistarenAbestiak(PlayList a) {
 		   Vector emaitza= new Vector();
-		   
+		   emaitza=a.abestiakBektoreanSartu(emaitza);
 		   return emaitza;
 	   }
 	   
@@ -388,110 +498,106 @@ public class Necarea {
 	   //ABESTIAREKIN
 	   
 	   public Abestia bilatuAbestiaIzenaz(String abestia){
-		   Abestia a= new Abestia();
-		   
-		   return a;
+		   boolean aurkitua=false;
+		   Iterator<Artista> itr=this.artistak.iterator();
+		   Artista a= null;
+		   Abestia ab=null;
+	    	while(itr.hasNext()&&!aurkitua) {
+	    		a=itr.next();
+	    		ab=a.bilatuAbestiaIzenaz(abestia);
+	    		if(ab!=null) {
+	    			aurkitua=true;
+	    		}
+	    	}
+		   return ab;
 	   }
 	   
 	   public String artistarenIzenaLortu(Abestia a) {
-		   String emaitza="";
-		   
+		   String arKode=a.getArtistaKode();
+		   String emaitza=this.bilatuArtista(arKode).getIzena();
 		   return emaitza;
 	   }
 	   
 	   public String albumarenIzenaLortu(Abestia a) {
-		   String emaitza="";
-		   
-		   return emaitza;
+		   String al=this.bilatuAlbuma(a.getArtistaKode(), a.getAlbumId()).getIzena();
+		   return al;
 	   }
 	   
 	   public int abestiarenId(Abestia a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getId();
 	   }
 	   
-	   public int abestiarenIraupena(Abestia a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+	   public String abestiarenIraupena(Abestia a) {
+		   return a.getDenbora();
 	   }
 	   
-	   public int abestiarenData(Abestia a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
-	   }
-	   
-	   public String abestiarenGeneroa(Abestia a) {
-		   String emaitza="";
-		   
-		   return emaitza;
+	  public String abestiarenData(Abestia a) {
+		   return a.getData();
 	   }
 	   
 	   public int abestiarenLikeKop(Abestia a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getLikeKop();
 	   }
 	   
 	   public String abestiarenLetra(Abestia a) {
-		   String emaitza="";
-		   
+		   String letra=a.getLetra();
+		   String emaitza=null;
+		   if(letra!=null) {
+			  emaitza=letra; 
+		   }
 		   return emaitza;
 	   }
 	   
-	   public void abestiaGustatuZaio(Abestia a) {
-		   //hacer al like +1
+	   public void abestiaGustatuZaio(Abestia a) {//FALTA SUMAR EN LA DATU BASE
+		   a.likeEmanDiote();
 		   
 	   }
 	   
 	 //ALBUMAREN INFORMAZIOA
 	   
 	  public Albuma bilatuAlbumaIzenaz(String album) {
-		  Albuma a= new Albuma();
-		  
-		  return a;
+		  boolean aurkitua=false;
+		   Iterator<Artista> itr=this.artistak.iterator();
+		   Artista a= null;
+		   Albuma al=null;
+	    	while(itr.hasNext()&&!aurkitua) {
+	    		a=itr.next();
+	    		al=a.bilatuAlbumaIzenaz(album);
+	    		if(al!=null) {
+	    			aurkitua=true;
+	    		}
+	    	}
+		   return al;
 	  }
 	  
 	   public String artistarenIzenaLortu(Albuma a) {
-		   String emaitza="";
-		   
+		   String arKode=a.getArtistaKode();
+		   String emaitza=this.bilatuArtista(arKode).getIzena();
 		   return emaitza;
 	   }
 	   
 	   public int albumarenId(Albuma a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getId();
 	   }
 	   
-	   public int albumarenIraupena(Albuma a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+	   public String albumarenIraupena(Albuma a) {
+		  return a.getDenbora();
 	   }
 	   
-	   public int albumarenData(Albuma a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+	   public String albumarenData(Albuma a) {
+		   return a.getData();
 	   }
 	
 	   public int albumarenLikeKop(Albuma a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getLikeKop();
 	   }
 	   
 	   public int albumarenAbestiKop(Albuma a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getAbestiKop();
 	   }
 	   
-	   public void albumaGustatuZaio(Albuma a) {
-		   //hacer al like +1
+	   public void albumaGustatuZaio(Albuma a) {//HAY QUE SUMAR TAMBIEN EN LA DATU BASE
+		   a.likeEmanDiote();
 		   
 	   }
 	   
@@ -499,106 +605,118 @@ public class Necarea {
 	   //ARTISTAREN INFORMAZIOA
 	   
 	   public Artista artistaBilatuIzenaz(String artista) {
-		   Artista a=new Artista();
-		   
+		   boolean aurkitua=false;
+		   Iterator<Artista> itr=this.artistak.iterator();
+		   Artista a= null;
+	    	while(itr.hasNext()&&!aurkitua) {
+	    		a=itr.next();
+	    		if(a.izenBeraDu(artista)) {
+	    			aurkitua=true;
+	    		}
+	    	}
 		   return a;
 	   }
 	   
 	   public String artistarenBiografia(Artista a) {
-		   String emaitza="";
-		   
-		   return emaitza;
+		   return a.getBiografia();
 	   }
 	   
-	   public int artistarenId(Artista a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+	   public String artistarenId(Artista a) {
+		   return a.getKode();
 	   }
 	   
 	   public int artistarenLikeKop(Artista a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getLikeKop();
 	   }
 	   
-	   public void artistaGustatuZaio(Artista a) {
-		   //hacer al like +1
+	   public void artistaGustatuZaio(Artista a) {//HAY QUE SUMAR EN LA DATU BASE
+		   a.likeEmanDiote();
 	   }
 	   
 	   
 	   //playlistaren info
 	   
 	   public PlayList bilatuPlaylistIzenaz(String playlist){
-		   PlayList emaitza= new PlayList();
-		   
-		   return emaitza;
+		   boolean aurkitua=false;
+		   Iterator<PlayList> itr=this.playlistak.iterator();
+		   PlayList pl= null;
+	    	while(itr.hasNext()&&!aurkitua) {
+	    		pl=itr.next();
+	    		if(pl.izenBeraDu(playlist)) {
+	    			aurkitua=true;
+	    		}
+	    	}
+		   return pl;
 	   }
 	   
 	   public String playlistarenErabiltzailea(PlayList a) {
-		   String emaitza="";
-		   
-		   return emaitza;
+		   return a.getErabiltzailea();
 	   }
 	   public int playlistarenKodea(PlayList a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getKode();
 	   }
 	   
-	   public int playlistarenDenbora(PlayList a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+	   public String playlistarenDenbora(PlayList a) {
+		   return a.getDenbora();
 	   }
 	   
-	   public int playlistarenData(PlayList a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+	   public String playlistarenData(PlayList a) {
+		   return a.getData();
 	   }
 	   
 	   public int playlistarenLikeKop(PlayList a) {
-		   int emaitza=0;
-		   
-		   return emaitza;
+		   return a.getLikeKop();
 	   }
 	   public String playlistarenDeskribapena(PlayList a) {
-		   String emaitza="";
-		   
-		   return emaitza;
+		   return a.getDeskribapena();
 	   }
 	   
-	   public void playlistLikeEman(PlayList pl) {
-		   //hacer al like +1
+	   public void playlistLikeEman(PlayList pl) {//HAY QUE SUMAR EN LA DATU BASE
+		   pl.likeEmanDiote();
 	   }
 	   
 
 	   
 	   
 	   
-	   //-----------------------
+	   //----------------------- 
 	   
 	   public void abestiaGorde(String erabiltzailea,String abestia) {
 		   //guarda la cancion en las canciones q sigue el erabiltzaile
+		   Abestia a=this.bilatuAbestiaIzenaz(abestia);
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzailea);
+		   e.gehituAbestia(a);//dentro de este?¿
 	   }
 	   
 	   public void albumaGorde(String erabiltzailea,String album) {
 		   //guarda el album en los albumes q le gustan
+		   Albuma a=this.bilatuAlbumaIzenaz(album);
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzailea);
+		   e.gehituAlbuma(a);
 	   }
 	   
 	   public void artistaGorde(String erabiltzailea,String artista) {
 		   //guarda el album en los albumes q le gustan
+		   Artista a=this.artistaBilatuIzenaz(artista);
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzailea);
+		   e.gehituArtista(a);
 	   }
 	   
-	   public void erabiltzaileaGorde(String erabiltzailea,String e) {
+	   public void erabiltzaileaGorde(String erabiltzailea,String e) { //a ha seguido a b
 		   //guarda el album en los albumes q le gustan
+		   Erabiltzaile a=this.bilatuErabiltzailea(erabiltzailea);
+		   Erabiltzaile b=this.bilatuErabiltzailea(e);
+		   a.gehituJarraitua(b);
+		   b.gehituJarraitzaile(a);
 	   }
 	   
 	   public void playlistGorde(String erabiltzailea,String playlist) {
 		   //guarda el album en los albumes q le gustan
+		   PlayList pl=this.bilatuPlaylistIzenaz(playlist);
+		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzailea);
+		   e.gehituPlaylist(pl);
 	   }
 	   
-	   */
+	   
 
 }

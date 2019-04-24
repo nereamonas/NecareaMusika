@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 
 import necareaMusika.Konektatu;
 import necareaMusika.Necarea;
@@ -53,5 +55,69 @@ public class PlayList {
 	
 	public boolean kodeBerdinaDu(int plId) {
 		return this.id==plId;
+	}
+	
+	public void zureDatuakInprimatu() {
+		System.out.println("	Izena -> "+this.izena);
+		System.out.print("	Abestiak -> ");
+		Iterator<Abestia> itr=abestiak.iterator();
+		Abestia a=null;
+		while (itr.hasNext()) {
+			a=itr.next();
+			if(!itr.hasNext()) {
+				a.zureIzenaInprimatu();
+			}else {
+				a.zureIzenaInprimatu();
+				System.out.print(", ");
+			}
+		}
+	}
+	
+	public void zureIzenaInprimatu() {
+		System.out.print(this.izena);
+	}
+	
+	public boolean izenBeraDu(String iz) {
+		return this.izena.equals(iz);
+	}
+	
+	public String getErabiltzailea() {
+		return this.erabiltzaileUser;
+	}
+	
+	public int getKode() {
+		return this.id;
+	}
+	
+	public String getDenbora() {
+		return this.denbora.toString();
+	}
+	
+	public String getData() {
+		return this.data.toString();
+	}
+	
+	public int getLikeKop() {
+		return this.likeKop;
+	}
+	
+	public String getDeskribapena() {
+		return this.deskribapena;
+	}
+	
+	public void likeEmanDiote() {
+		this.likeKop++;
+	}
+	
+	public String getIzena() {
+		return this.izena;
+	}
+	
+	public Vector abestiakBektoreanSartu(Vector bek) {
+		for(int i=0;i<this.abestiak.size();i++) {
+			String s=this.abestiak.get(i).getIzena();
+			bek.addElement(s);
+		}
+		return bek;
 	}
 }

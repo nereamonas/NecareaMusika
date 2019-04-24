@@ -28,4 +28,57 @@ public class Abestia {
 	public boolean idBerdinaDu(int abId) {
 		return abId==this.id;
 	}
+	
+	public boolean izenBerdinaDu(String abestia) {
+		return this.izena.equals(abestia);
+	}
+	
+	public void zureIzenaInprimatu() {
+		System.out.print(this.izena);
+	}
+	
+	public String getArtistaKode() {
+		return this.artistaKode;
+	}
+	
+	public int getAlbumId() {
+		return this.albumId;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public String getDenbora() {
+		String input = this.denbora.toString();
+		String azken5 = "";  
+		if (input.length() > 5){
+		    azken5 = input.substring(input.length() - 5);
+		}else{
+		    azken5 = input;
+		}
+		System.out.println(azken5);
+		return azken5;
+	}
+	
+	public String getData() {
+		return this.data.toString();
+	}
+	
+	public int getLikeKop() {
+		return this.likeKop;
+	}
+	
+	public String getLetra() {
+		return this.letra;
+	}
+	
+	public void likeEmanDiote() {
+		this.likeKop++;
+	}
+	
+	public String getIzena() {
+		return this.izena;
+	}
 }
+
