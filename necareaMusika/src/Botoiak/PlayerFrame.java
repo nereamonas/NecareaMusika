@@ -1,4 +1,4 @@
-package Botoiak;
+package Botoiak;  
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -27,11 +27,11 @@ public class PlayerFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args,String abestia) {
+	public static void main(String[] args,String abestia,String erabiltzailea,String p) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerFrame frame = new PlayerFrame(abestia);
+					PlayerFrame frame = new PlayerFrame(abestia,erabiltzailea,p);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class PlayerFrame extends JFrame {
 	 * Create the frame.
 	 * @throws Exception 
 	 */ 
-	public PlayerFrame(String abestia) throws Exception {
+	public PlayerFrame(String abestia,String erabiltzailea,String p) throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 410, 227);
 		contentPane = new JPanel();
@@ -175,6 +175,9 @@ public class PlayerFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					r.Stop();
+					WebFrame web= new WebFrame(erabiltzailea, p);
+					web.setVisible(true);
+					dispose();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

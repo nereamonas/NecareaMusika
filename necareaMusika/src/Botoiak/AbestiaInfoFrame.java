@@ -1,4 +1,4 @@
-package Botoiak;
+ package Botoiak;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -181,9 +181,6 @@ public class AbestiaInfoFrame extends JFrame {
 		JLabel lblIrteeraData = new JLabel("Irteera data:");
 		lblIrteeraData.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
-		JLabel lblGeneroa = new JLabel("Generoa:");
-		lblGeneroa.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
 		JLabel lblLikeKopurua = new JLabel("Like kopurua:");
 		lblLikeKopurua.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
@@ -208,8 +205,6 @@ public class AbestiaInfoFrame extends JFrame {
 		
 		JLabel label_5 = new JLabel(""+necarea.abestiarenData(a));
 		
-		JLabel label_6 = new JLabel(""+necarea.abestiarenGeneroa(a));
-		
 		JLabel label_7 = new JLabel(""+necarea.abestiarenLikeKop(a));
 		
 		JLabel label_8 = new JLabel(""+necarea.abestiarenLetra(a));
@@ -232,40 +227,39 @@ public class AbestiaInfoFrame extends JFrame {
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblIrteeraData)
-						.addComponent(lblIraupena)
-						.addComponent(lblAlbumKodea)
-						.addComponent(lblGeneroa)
-						.addComponent(lblArtistarenIzena)
-						.addComponent(lblIzena)
-						.addComponent(lblAbestiarenId)
-						.addComponent(lblLikeKopurua)
-						.addComponent(lblLetra))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_8)
-						.addComponent(label)
-						.addComponent(label_2)
-						.addComponent(label_3)
-						.addComponent(label_4)
-						.addComponent(label_5)
-						.addComponent(label_6)
 						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblIrteeraData)
+								.addComponent(lblIraupena)
+								.addComponent(lblAlbumKodea)
+								.addComponent(lblArtistarenIzena)
+								.addComponent(lblIzena)
+								.addComponent(lblAbestiarenId)
+								.addComponent(lblLikeKopurua)
+								.addComponent(lblLetra))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(label_1)
-								.addComponent(label_7))
-							.addGap(106)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnAbestiaGustatuZait)
-								.addComponent(btnArtistaraJoan)
-								.addComponent(btnAbestiaGorde))))
-					.addContainerGap(30, Short.MAX_VALUE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(66)
-					.addComponent(btnAbestiaEntzun)
-					.addContainerGap(223, Short.MAX_VALUE))
+								.addComponent(label_8)
+								.addComponent(label)
+								.addComponent(label_2)
+								.addComponent(label_3)
+								.addComponent(label_4)
+								.addComponent(label_5)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(label_1)
+										.addComponent(label_7))
+									.addGap(106)
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnAbestiaGustatuZait)
+										.addComponent(btnArtistaraJoan)
+										.addComponent(btnAbestiaGorde)))))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(66)
+							.addComponent(btnAbestiaEntzun)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -296,9 +290,6 @@ public class AbestiaInfoFrame extends JFrame {
 						.addComponent(lblIrteeraData, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_5))
 					.addGap(11)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblGeneroa, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_6))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLikeKopurua, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
@@ -563,7 +554,7 @@ public class AbestiaInfoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PlayerFrame play=null;
 				try {
-					play= new PlayerFrame(abestia);
+					play= new PlayerFrame(abestia, erabiltzailea,p);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -1,4 +1,4 @@
-package Taulak;
+ package Taulak;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -81,4 +81,3 @@ public class Abestia {
 		return this.izena;
 	}
 }
-

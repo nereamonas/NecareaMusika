@@ -1,4 +1,4 @@
-package Botoiak;
+ package Botoiak;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -594,7 +594,7 @@ public class PlayListInfoFrame extends JFrame {
 				if(list.getSelectedIndex()!=-1) {
 					PlayerFrame play=null;
 					try {
-						play= new PlayerFrame((String) list.getSelectedValue());
+						play= new PlayerFrame((String) list.getSelectedValue(),erabiltzailea,p);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

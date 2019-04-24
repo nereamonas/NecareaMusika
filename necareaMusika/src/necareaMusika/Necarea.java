@@ -1,4 +1,4 @@
-package necareaMusika;
+ package necareaMusika;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -370,7 +370,7 @@ public class Necarea {
 	    	while(itr.hasNext()&&!aurkitua) {
 	    		er=itr.next();
 	    		if(er.userBerdinaDu(e)) {
-	    			er.getEmail();
+	    			mail=er.getEmail();
 	    			aurkitua=true;
 	    		}
 	    	}

@@ -1,4 +1,4 @@
-package Botoiak;
+ package Botoiak;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -575,7 +575,7 @@ public class WebFrame extends JFrame {
 		//Boton bilatu
 				btnBilatu.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						String Busqueda=textField.getText();
+						String Busqueda=textField_1.getText();
 						
 						//ABESTI
 						DefaultListModel modeloAbesti = new DefaultListModel();
@@ -649,7 +649,7 @@ public class WebFrame extends JFrame {
 				if(list.getSelectedIndex()!=-1) {
 					PlayerFrame play=null;
 					try {
-						play= new PlayerFrame((String) list.getSelectedValue());
+						play= new PlayerFrame((String) list.getSelectedValue(),erabiltzailea,p);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

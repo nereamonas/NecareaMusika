@@ -1,4 +1,4 @@
-package Botoiak;
+ package Botoiak;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -28,6 +28,7 @@ public class SortuKontuaFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTextField textField_2;
      
 	/**
 	 * Launch the application.
@@ -55,7 +56,7 @@ public class SortuKontuaFrame extends JFrame {
 		Necarea necarea=Necarea.getNecarea();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 480, 254);
+		setBounds(100, 100, 480, 298);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 255, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -89,6 +90,12 @@ public class SortuKontuaFrame extends JFrame {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		
+		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -97,8 +104,9 @@ public class SortuKontuaFrame extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(108)
 							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblErabiltzailea)
 								.addComponent(lblPasahitza)
-								.addComponent(lblErabiltzailea))
+								.addComponent(lblEmail))
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(5)
@@ -106,13 +114,14 @@ public class SortuKontuaFrame extends JFrame {
 								.addGroup(gl_panel.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addGap(10)
-											.addComponent(btnSartu))
+										.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(214)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGap(215)
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(189)
+							.addComponent(btnSartu)))
 					.addContainerGap(189, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -130,10 +139,14 @@ public class SortuKontuaFrame extends JFrame {
 							.addGap(7)
 							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
 					.addComponent(btnSartu)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(18)
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(22, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 		
@@ -175,7 +188,12 @@ public class SortuKontuaFrame extends JFrame {
 						label_1.setText("Ez duzu pasahitza sartu");
 						textField.setBackground(Color.RED);
 					}else {
-					
+						//email-a hartu:
+						String email=textField_2.getText().trim();
+						if (textField_2.getText().length()==0) {
+							label_1.setText("Ez duzu pasahitza sartu");
+							textField_2.setBackground(Color.RED);
+						}else {
 				
 				boolean dago=necarea.pertsonaBilatu(erabiltzailea);
 				
@@ -185,7 +203,7 @@ public class SortuKontuaFrame extends JFrame {
 						label_1.setText("Erabiltzaile hori hartuta dago jada, beste bat aukeratu");
 						
 				}else {
-					necarea.erabiltzaileaGehitu(erabiltzailea,pasahitza);
+					necarea.erabiltzaileaGehitu(erabiltzailea,pasahitza,email);
 					label_1.setText("Zure erabiltzailea sortu da. ");
 					JButton btnSartu2 = new JButton("Saioa hasi");
 					panel.add(btnSartu2);
@@ -207,6 +225,7 @@ public class SortuKontuaFrame extends JFrame {
 					});
 				}
 			}
+				}
 				}
 			}
 			

@@ -1,4 +1,4 @@
-package Botoiak;
+package Botoiak;  
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -48,6 +48,7 @@ public class NecareaFrame extends JFrame {
 	public NecareaFrame() throws SQLException {
 		
 		Necarea necarea= Necarea.getNecarea();
+		necarea.guztiaHartu();
 		
 		
 		setTitle("Necarea");

@@ -1,4 +1,4 @@
-package Botoiak;
+ package Botoiak;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -57,7 +57,7 @@ public class ArtistaInfoFrame extends JFrame {
 		setBackground(new Color(245, 255, 250));
 		setTitle("Printzipala");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 473, 530);
+		setBounds(100, 100, 500, 530);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
