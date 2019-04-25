@@ -18,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
+import javax.swing.ImageIcon;
 
 
 public class PlayerFrame extends JFrame {
@@ -46,7 +47,7 @@ public class PlayerFrame extends JFrame {
 	 */ 
 	public PlayerFrame(String abestia,String erabiltzailea,String p) throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 410, 227);
+		setBounds(100, 100, 410, 395);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 255, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,7 +59,7 @@ public class PlayerFrame extends JFrame {
 		contentPane.add(panel, BorderLayout.NORTH);
 		
 		JLabel lblAbestia = new JLabel("Abestia: ");
-		lblAbestia.setFont(new Font("Yu Gothic UI", Font.BOLD, 14));
+		lblAbestia.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
 		panel.add(lblAbestia);
 		
 		JPanel panel_1 = new JPanel();
@@ -91,11 +92,19 @@ public class PlayerFrame extends JFrame {
 		btnItxi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnItxi.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnItxi.setBackground(new Color(135, 206, 250));
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("src/Abestiak/"+abestia+".jpg"));
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(11)
+					.addGap(152)
+					.addComponent(btnItxi, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(169, Short.MAX_VALUE))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(19)
 					.addComponent(btnPlay, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
 					.addGap(28)
 					.addComponent(btnPausa)
@@ -103,22 +112,24 @@ public class PlayerFrame extends JFrame {
 					.addComponent(btnJarraitu)
 					.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
 					.addComponent(btnStop, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-					.addGap(30))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(152)
-					.addComponent(btnItxi, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(169, Short.MAX_VALUE))
+					.addGap(22))
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(94, Short.MAX_VALUE)
+					.addComponent(label)
+					.addGap(90))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(55)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(label)
+					.addPreferredGap(ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnPlay, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnStop, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnPausa)
 						.addComponent(btnJarraitu, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+					.addGap(18)
 					.addComponent(btnItxi, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
@@ -188,5 +199,4 @@ public class PlayerFrame extends JFrame {
 		
 		
 	}
-
 }
