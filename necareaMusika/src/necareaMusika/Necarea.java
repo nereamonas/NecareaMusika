@@ -1,4 +1,4 @@
-package necareaMusika;
+ package necareaMusika;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -553,6 +553,11 @@ public class Necarea {
 		   
 	   }
 	   
+	   public void abestiaLikeKendu(Abestia a) {//FALTA SUMAR EN LA DATU BASE
+		   a.likeKendu();
+		   
+	   }
+	   
 	 //ALBUMAREN INFORMAZIOA
 	   
 	  public Albuma bilatuAlbumaIzenaz(String album) {
@@ -571,7 +576,6 @@ public class Necarea {
 	  }
 	  
 	   public String artistarenIzenaLortu(Albuma a) {
-		   System.out.print(a.getArtistaKode());
 		   String arKode=a.getArtistaKode();
 		   String emaitza=this.bilatuArtista(arKode).getIzena();
 		   return emaitza;
@@ -597,9 +601,12 @@ public class Necarea {
 		   return a.getAbestiKop();
 	   }
 	   
-	   public void albumaGustatuZaio(Albuma a) {//HAY QUE SUMAR TAMBIEN EN LA DATU BASE
+	   public void albumaGustatuZaio(Albuma a) {
 		   a.likeEmanDiote();
-		   
+	   }
+	   
+	   public void albumaLikeKendu(Albuma a) {
+		   a.likeKendu();
 	   }
 	   
 	   
@@ -630,8 +637,12 @@ public class Necarea {
 		   return a.getLikeKop();
 	   }
 	   
-	   public void artistaGustatuZaio(Artista a) {//HAY QUE SUMAR EN LA DATU BASE
+	   public void artistaGustatuZaio(Artista a) {
 		   a.likeEmanDiote();
+	   }
+	   
+	   public void artistaLikeKendu(Artista a) {
+		   a.likeKendu();
 	   }
 	   
 	   
@@ -672,8 +683,12 @@ public class Necarea {
 		   return a.getDeskribapena();
 	   }
 	   
-	   public void playlistLikeEman(PlayList pl) {//HAY QUE SUMAR EN LA DATU BASE
+	   public void playlistLikeEman(PlayList pl) {
 		   pl.likeEmanDiote();
+	   }
+	   
+	   public void playlistLikeKendu(PlayList pl) {
+		   pl.likeKendu();
 	   }
 	   
 

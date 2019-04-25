@@ -525,18 +525,27 @@ public class ArtistaInfoFrame extends JFrame {
 		
 		btnLikeEman.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				necarea.artistaGustatuZaio(a);
-				label_3.setText(""+necarea.artistarenLikeKop(a));
+				if(btnLikeEman.getText().equals("Like eman")){
+					necarea.artistaGustatuZaio(a);
+					label_3.setText(""+necarea.artistarenLikeKop(a));
+					btnLikeEman.setText("Like kendu");
+				}else {
+					if(btnLikeEman.getText().equals("Like kendu")) {
+						necarea.artistaLikeKendu(a);
+						label_3.setText(""+necarea.artistarenLikeKop(a));
+						btnLikeEman.setText("Like eman");
+					}
+				}
 			}
 		});
 		
 		//diskora joan
 		btnDiskoraJoan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(list.getSelectedIndex()!=-1) {
+				if(list_1.getSelectedIndex()!=-1) {
 					AlbumInfoFrame albumInfo=null;
 					try {
-						albumInfo = new AlbumInfoFrame(erabiltzailea,p,(String) list.getSelectedValue());
+						albumInfo = new AlbumInfoFrame(erabiltzailea,p,(String) list_1.getSelectedValue());
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

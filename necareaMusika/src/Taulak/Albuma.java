@@ -185,6 +185,19 @@ public class Albuma {
 		 }
 	}
 	
+	public void likeKendu() {
+		this.likeKop--;
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "albuma" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
+		 }
+	}
+	
 	public Vector abestiakBektoreanSartu(Vector bek) {
 		for(int i=0;i<this.abestiak.size();i++) {
 			String s=this.abestiak.get(i).getIzena();

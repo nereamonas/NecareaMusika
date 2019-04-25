@@ -120,6 +120,19 @@ public class PlayList {
 		 }
 	}
 	
+	public void likeKendu() {
+		this.likeKop--;
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "playlist" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
+		 }
+	}
+	
 	public String getIzena() {
 		return this.izena;
 	}

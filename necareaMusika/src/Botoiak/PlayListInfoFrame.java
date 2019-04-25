@@ -567,8 +567,18 @@ public class PlayListInfoFrame extends JFrame {
 		//like eman
 		btnLikeEman.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				necarea.playlistLikeEman(pl);
-				label_5.setText(""+necarea.playlistarenLikeKop(pl));
+
+				if(btnLikeEman.getText().equals("Like eman")){
+					necarea.playlistLikeEman(pl);
+					label_5.setText(""+necarea.playlistarenLikeKop(pl));
+					btnLikeEman.setText("Like kendu");
+				}else {
+					if(btnLikeEman.getText().equals("Like kendu")) {
+						necarea.playlistLikeKendu(pl);
+						label_5.setText(""+necarea.playlistarenLikeKop(pl));
+						btnLikeEman.setText("Like eman");
+					}
+				}
 			}
 		});
 		

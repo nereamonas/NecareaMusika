@@ -229,6 +229,19 @@ public class Artista {
 		 }
 	}
 	
+	public void likeKendu() {
+		likeKop--;
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "artista" + " SET likekop ="+ this.likeKop+" WHERE kodea = \"" + this.kodea + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
+		 }
+	}
+	
 	public Vector albumakBektoreanSartu(Vector bek) {
 		for(int i=0;i<this.albumak.size();i++) {
 			   String s=this.albumak.get(i).getIzena();

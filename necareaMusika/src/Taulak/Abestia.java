@@ -1,4 +1,4 @@
-package Taulak;
+ package Taulak;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -81,6 +81,19 @@ public class Abestia {
 	
 	public void likeEmanDiote() {
 		this.likeKop++;
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "abestia" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
+		 }
+	}
+	
+	public void likeKendu() {
+		this.likeKop--;
 		try {
 			 Connection konexioa=Konektatu.getConnection();
 		     String Query = "UPDATE " + "abestia" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";

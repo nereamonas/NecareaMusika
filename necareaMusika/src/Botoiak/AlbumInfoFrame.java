@@ -552,8 +552,17 @@ public class AlbumInfoFrame extends JFrame {
 		//albuma gustatu
 		btnLikeEman.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				necarea.albumaGustatuZaio(a);
-				label_5.setText(""+necarea.albumarenLikeKop(a));
+				if(btnLikeEman.getText().equals("Like eman")){
+					necarea.albumaGustatuZaio(a);
+					label_5.setText(""+necarea.albumarenLikeKop(a));
+					btnLikeEman.setText("Like kendu");
+				}else {
+					if(btnLikeEman.getText().equals("Like kendu")) {
+						necarea.albumaLikeKendu(a);
+						label_5.setText(""+necarea.albumarenLikeKop(a));
+						btnLikeEman.setText("Like eman");
+					}
+				}
 			}
 		});
 		

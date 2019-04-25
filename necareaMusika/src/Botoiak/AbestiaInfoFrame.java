@@ -57,7 +57,7 @@ public class AbestiaInfoFrame extends JFrame {
 		setBackground(new Color(245, 255, 250));
 		setTitle("Printzipala");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 426, 453);
+		setBounds(100, 100, 454, 453);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -184,7 +184,7 @@ public class AbestiaInfoFrame extends JFrame {
 		JLabel lblLikeKopurua = new JLabel("Like kopurua:");
 		lblLikeKopurua.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
-		JButton btnAbestiaGustatuZait = new JButton("Abestia gustatu zait");
+		JButton btnAbestiaGustatuZait = new JButton("Like eman");
 		btnAbestiaGustatuZait.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAbestiaGustatuZait.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		btnAbestiaGustatuZait.setBackground(new Color(135, 206, 250));
@@ -241,21 +241,21 @@ public class AbestiaInfoFrame extends JFrame {
 								.addComponent(lblLetra))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(label_8)
 								.addComponent(label)
 								.addComponent(label_2)
 								.addComponent(label_3)
 								.addComponent(label_4)
-								.addComponent(label_5)
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 										.addComponent(label_1)
-										.addComponent(label_7))
+										.addComponent(label_7)
+										.addComponent(label_8)
+										.addComponent(label_5))
 									.addGap(106)
 									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnAbestiaGustatuZait)
-										.addComponent(btnArtistaraJoan)
-										.addComponent(btnAbestiaGorde)))))
+										.addComponent(btnAbestiaGorde)
+										.addComponent(btnArtistaraJoan)))))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(66)
 							.addComponent(btnAbestiaEntzun)))
@@ -273,7 +273,7 @@ public class AbestiaInfoFrame extends JFrame {
 						.addComponent(lblArtistarenIzena, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_1)
 						.addComponent(btnArtistaraJoan))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblAbestiarenId)
 						.addComponent(label_2))
@@ -289,8 +289,7 @@ public class AbestiaInfoFrame extends JFrame {
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblIrteeraData, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_5))
-					.addGap(11)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLikeKopurua, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_7)
@@ -299,7 +298,7 @@ public class AbestiaInfoFrame extends JFrame {
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLetra)
 						.addComponent(label_8))
-					.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAbestiaEntzun)
 						.addComponent(btnAbestiaGorde, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
@@ -544,8 +543,18 @@ public class AbestiaInfoFrame extends JFrame {
 		//gustatu zaio
 		btnAbestiaGustatuZait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				necarea.abestiaGustatuZaio(a);
-				label_7.setText(""+necarea.abestiarenLikeKop(a));
+				if(btnAbestiaGustatuZait.getText().equals("Like eman")){
+					necarea.abestiaGustatuZaio(a);
+					label_7.setText(""+necarea.abestiarenLikeKop(a));
+					btnAbestiaGustatuZait.setText("Like kendu");
+				}else {
+					if(btnAbestiaGustatuZait.getText().equals("Like kendu")) {
+						necarea.abestiaLikeKendu(a);
+						label_7.setText(""+necarea.abestiarenLikeKop(a));
+						btnAbestiaGustatuZait.setText("Like eman");
+					}
+				}
+				
 			}
 		});
 		
@@ -565,5 +574,4 @@ public class AbestiaInfoFrame extends JFrame {
 		});
 		
 	}
-
 }
