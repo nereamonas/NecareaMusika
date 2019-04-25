@@ -1,4 +1,4 @@
- package Taulak;
+package Taulak;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,6 +8,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
+
+import javax.swing.JOptionPane;
 
 import necareaMusika.Konektatu;
 
@@ -76,26 +78,30 @@ public class Albuma {
 		boolean aurkitua=false;
 		Iterator<Abestia> itr=abestiak.iterator();
 		Abestia a=null;
+		Abestia ema=null;
 		while(itr.hasNext()&&!aurkitua) {
 			a=itr.next();
 			if(a.idBerdinaDu(abId)) {
 				aurkitua=true;
+				ema=a;
 			}
 		}
-		return a;
+		return ema;
 	}
 	
 	public Abestia bilatuAbestiaIzenaz(String abestia) {
 		boolean aurkitua=false;
 		Iterator<Abestia> itr=abestiak.iterator();
 		Abestia a=null;
+		Abestia ema=null;
 		while(itr.hasNext()&&!aurkitua) {
 			a=itr.next();
 			if(a.izenBerdinaDu(abestia)) {
 				aurkitua=true;
+				ema=a;
 			}
 		}
-		return a;
+		return ema;
 	}
 	
 	public boolean kodeBerdinaDu(int id) {
@@ -168,6 +174,15 @@ public class Albuma {
 	
 	public void likeEmanDiote() {
 		this.likeKop++;
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "albuma" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
+		 }
 	}
 	
 	public Vector abestiakBektoreanSartu(Vector bek) {

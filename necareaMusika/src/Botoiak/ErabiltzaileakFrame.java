@@ -20,6 +20,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -28,6 +29,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import Taulak.Erabiltzaile;
 import necareaMusika.Necarea;
 
 public class ErabiltzaileakFrame extends JFrame {
@@ -459,7 +461,11 @@ public class ErabiltzaileakFrame extends JFrame {
 		btnErabiltazileaJarraituNahi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(list.getSelectedIndex()!=-1) {
-					necarea.erabiltzaileaGorde(erabiltzailea, (String) list.getSelectedValue());
+					if(erabiltzailea.equals((String) list.getSelectedValue())) {//cartel no te puedes seguir a ti mismo
+						JOptionPane.showMessageDialog(null, "Ezin duzu zure burua jarraitu");
+					}else {
+						necarea.erabiltzaileaGorde(erabiltzailea, (String) list.getSelectedValue());
+					}
 				}
 				
 			}

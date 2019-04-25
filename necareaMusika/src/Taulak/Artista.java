@@ -1,4 +1,4 @@
- package Taulak;
+package Taulak;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import javax.print.attribute.DateTimeSyntax;
+import javax.swing.JOptionPane;
 
 import necareaMusika.Konektatu;
 
@@ -49,14 +50,16 @@ public class Artista {
 		Iterator<Albuma> itr=albumak.iterator();
 		Albuma a=null;
 		Abestia ab=null;
+		Abestia ema=null;
 		while(itr.hasNext()&&!aurkitua) {
 			a=itr.next();
 			ab=a.bilatuAbestia(abId);
 			if (ab!=null) {
 				aurkitua=true;
+				ema=ab;
 			}
 		}
-		return ab;
+		return ema;
 	}
 	
 	public Abestia bilatuAbestiaIzenaz(String abestia) {
@@ -64,40 +67,46 @@ public class Artista {
 		Iterator<Albuma> itr=albumak.iterator();
 		Albuma a=null;
 		Abestia ab=null;
+		Abestia ema=null;
 		while(itr.hasNext()&&!aurkitua) {
 			a=itr.next();
 			ab=a.bilatuAbestiaIzenaz(abestia);
 			if (ab!=null) {
 				aurkitua=true;
+				ema=ab;
 			}
 		}
-		return ab;
+		return ema;
 	}
 	
 	public Albuma bilatuAlbuma(int alId) {
 		boolean aurkitua=false;
 		Iterator<Albuma> itr=albumak.iterator();
 		Albuma a=null;
+		Albuma ema=null;
 		while(itr.hasNext()&&!aurkitua) {
 			a=itr.next();
 			if(a.kodeBerdinaDu(alId)) {
 				aurkitua=true;
+				ema=a;
 			}
 		}
-		return a;
+		return ema;
 	}
 	
 	public Albuma bilatuAlbumaIzenaz(String album) {
 		boolean aurkitua=false;
 		Iterator<Albuma> itr=albumak.iterator();
 		Albuma a=null;
+		Albuma ema=null;
 		while(itr.hasNext()&&!aurkitua) {
 			a=itr.next();
 			if(a.izenBerdinaDu(album)) {
 				aurkitua=true;
+				ema=a;
 			}
 		}
-		return a;
+		return ema;
 	}
 	
 	public void zureDatuakInprimatu() {
@@ -209,6 +218,15 @@ public class Artista {
 	
 	public void likeEmanDiote() {
 		likeKop++;
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "artista" + " SET likekop ="+ this.likeKop+" WHERE kodea = \"" + this.kodea + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
+		 }
 	}
 	
 	public Vector albumakBektoreanSartu(Vector bek) {
@@ -237,6 +255,7 @@ public class Artista {
 	public Vector izenakBektoreanSartu(Vector bek) {
 		for(int i=0;i<this.izenak.size();i++) {
 			String s=this.izenak.get(i);
+			bek.addElement(s);
 		}
 		return bek;
 	}

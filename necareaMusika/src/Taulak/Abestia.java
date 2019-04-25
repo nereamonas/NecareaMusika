@@ -1,8 +1,14 @@
- package Taulak;
+package Taulak;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import necareaMusika.Konektatu;
 
 public class Abestia {
 	private int id;
@@ -75,6 +81,15 @@ public class Abestia {
 	
 	public void likeEmanDiote() {
 		this.likeKop++;
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "abestia" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
+		 }
 	}
 	
 	public String getIzena() {

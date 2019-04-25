@@ -234,7 +234,15 @@ public class Erabiltzaile {
 	
 	public void pasahitzaAldatu(String pas) {
 		this.pasahitza=pas;
-		//FALTA CAMBIARLO EN LA BASE DE DATOS
+		try {
+			 Connection konexioa=Konektatu.getConnection();
+		     String Query = "UPDATE " + "erabiltzaile" + " SET pasahitza ="+ pas+" WHERE user = \"" + this.user + "\"";
+		     java.sql.Statement st = konexioa.createStatement();
+		            st.executeUpdate(Query);
+		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
+		 } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
+		 }
 	}
 	
 	public String getEmail() {
@@ -288,7 +296,7 @@ public class Erabiltzaile {
 		this.jarraitu.add(a);
 		try {
 			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "INSERT INTO " + "jarraituerabiltzaile" + " VALUES("+ "\"" + this.user + "\", "+ "\"" + a.user+ "\")";
+		     String Query = "INSERT INTO " + "jarraituerabiltzaile" + " VALUES("+ "\"" + this.user + "\", "+ "\"" + a.getUser()+ "\")";
 		     java.sql.Statement st = konexioa.createStatement();
 		            st.executeUpdate(Query);
 		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
@@ -299,15 +307,6 @@ public class Erabiltzaile {
 	
 	public void gehituJarraitzaile(Erabiltzaile a) {
 		this.jarraitzaile.add(a);
-		try {
-			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "INSERT INTO " + "jarraituerabiltzaile" + " VALUES("+ "\"" + a.user + "\", "+ "\"" + this.user+ "\")";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
-		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
-		 } catch (SQLException ex) {
-		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
-		 }
 	}
 	
 	public void gehituPlaylist(PlayList pl) {
@@ -366,5 +365,18 @@ public class Erabiltzaile {
 			   bek.addElement(s);
 		   }
 		return bek;
+	}
+	
+	public boolean jarraitzenDu(String er) {
+		boolean aurkitua=false;
+		Iterator<Erabiltzaile> itr=jarraitu.iterator();
+		Erabiltzaile e=null;
+		while(itr.hasNext()&&!aurkitua) {
+			e=itr.next();
+			if(e.getUser().equals(this.user)) {
+				aurkitua=true;
+			}
+		}
+		return aurkitua;
 	}
 }

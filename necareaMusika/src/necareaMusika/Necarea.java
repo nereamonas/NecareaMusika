@@ -1,4 +1,4 @@
- package necareaMusika;
+package necareaMusika;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -571,6 +571,7 @@ public class Necarea {
 	  }
 	  
 	   public String artistarenIzenaLortu(Albuma a) {
+		   System.out.print(a.getArtistaKode());
 		   String arKode=a.getArtistaKode();
 		   String emaitza=this.bilatuArtista(arKode).getIzena();
 		   return emaitza;
