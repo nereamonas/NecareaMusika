@@ -22,22 +22,9 @@ public class Konektatu {
 		}else {
 			System.out.println("Konexioa ez da ondo sortu");
 		}
-		/*Hasi no funciona bn
-		 * try {
-			Class.forName(zerbitzaria);
-			this.konexioa=DriverManager.getConnection(zerbitzaria+urltime,erabiltzailea,pasahitza);
-			if(this.konexioa!=null) {
-				System.out.println("Konexioa ondo sortu da");
-			}
-		}catch(ClassNotFoundException | SQLException e) {
-			System.out.println("Konektatzean errorea sortu da"+e);
-		}*/
 	}
 	
 	public static Connection getConnection() throws SQLException {
-		//if (Konektatu.konexioa==null){
-		//	Konektatu.konexioa= (Connection) new Konektatu();
-		//}
 		return Konektatu.konexioa;
 	}
 	
