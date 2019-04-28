@@ -58,7 +58,7 @@ public class PlayerFrame extends JFrame {
 		panel.setBackground(new Color(175, 238, 238));
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lblAbestia = new JLabel("Abestia: ");
+		JLabel lblAbestia = new JLabel("Abestia: "+abestia);
 		lblAbestia.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
 		panel.add(lblAbestia);
 		

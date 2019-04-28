@@ -100,7 +100,7 @@ public class SarreraFrame extends JFrame {
 		panel_1.setBackground(new Color(175, 238, 238));
 		contentPane.add(panel_1, BorderLayout.NORTH);
 		
-		JLabel lblNecareaPelikulak = new JLabel("NECAREA PELIKULAK");
+		JLabel lblNecareaPelikulak = new JLabel("NECAREA MUSIKA");
 		panel_1.add(lblNecareaPelikulak);
 		lblNecareaPelikulak.setFont(new Font("Yu Gothic UI", Font.BOLD, 28));
 		

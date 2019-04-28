@@ -16,12 +16,12 @@ public class Erabiltzaile {
 	private String user;
 	private String pasahitza;
 	private String email;
-	private ArrayList<Abestia> nireAbestiak;//??
-	private ArrayList<Albuma> nireAlbumak;//??
-	private ArrayList<Artista> nireArtistak;//??
-	private ArrayList<PlayList> nirePlayListak;//??
-	private ArrayList<Erabiltzaile> jarraitu;//??
-	private ArrayList<Erabiltzaile> jarraitzaile;//??
+	private ArrayList<Abestia> nireAbestiak;
+	private ArrayList<Albuma> nireAlbumak;
+	private ArrayList<Artista> nireArtistak;
+	private ArrayList<PlayList> nirePlayListak;
+	private ArrayList<Erabiltzaile> jarraitu;
+	private ArrayList<Erabiltzaile> jarraitzaile;
 	
 	public Erabiltzaile(String pUser, String pPas, String pEmail) {
 		this.user=pUser;

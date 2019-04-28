@@ -243,64 +243,7 @@ public class Necarea {
 		
 		//------------------------------------------------------------------------------------
 		//------------------------------------------------------------------------------------
-	    //LUEGO BORRARLO DE AQUÍ
-		//LOS METODOS DE AÑADIR, BORRAR Y COGER DE IZENA - EJEMPLO
-		public void izenakHartu() throws SQLException {
-			Connection konexioa=Konektatu.getConnection();
-		    java.sql.Statement statement = konexioa.createStatement();
-		    ResultSet rs = statement.executeQuery("SELECT * FROM izenak");
-		    while (rs.next()) {
-		        String kodea = rs.getString("KODEA");
-		        String izena = rs.getString("IZENA");
-		        System.out.println(String.format("%S, %s", kodea, izena));
-		    }
-		    rs.close();
-		    statement.close();
-		}
-		
-		public void izenaGehitu(String kodea, String izena) {
-			 try {
-				 Connection konexioa=Konektatu.getConnection();
-			     String Query = "INSERT INTO " + "Izenak" + " VALUES("+ "\"" + kodea + "\", "+ "\"" + izena + "\")";
-			     java.sql.Statement st = konexioa.createStatement();
-			            st.executeUpdate(Query);
-			            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
-			 } catch (SQLException ex) {
-			            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
-			 }
-		}
-		
-		
-		public void izenaEzabatu(String izena) {
-		        try {
-		    		Connection konexioa=Konektatu.getConnection();
-		            String Query = "DELETE FROM " + "IZENAK" + " WHERE IZENA = \"" + izena + "\"";
-		            java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
-		 
-		        } catch (SQLException ex) {
-		            System.out.println(ex.getMessage());
-		            JOptionPane.showMessageDialog(null, "Errore bat sortu da izena ezabatzean");
-		        }
-		    }
-	    
-		//------------------------------------------------------------------------------------
-		//------------------------------------------------------------------------------------
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    //LOS COMENTO XQ DA ERRORES. PERO ESTOS SON LOS METODOS QUE TENEMOS QUE INPLEMENTAR
-	    
-	    
-	    
+
 	    
 	    
 	//ERABILTZAILEAREKIN    
@@ -335,7 +278,7 @@ public class Necarea {
 	    	return ondo;
 	    }
 	    
-	    public void erabiltzaileaGehitu(String erabiltzailea,String pasahitza, String email) {//HAY QUE AÑADIR PARA QUE META EMAIL EN INTERFACES
+	    public void erabiltzaileaGehitu(String erabiltzailea,String pasahitza, String email) {
 	    	Erabiltzaile e=new Erabiltzaile(erabiltzailea,pasahitza,email);
 	    	this.erabiltzaileak.add(e);
 	    	try {
@@ -548,12 +491,12 @@ public class Necarea {
 		   return emaitza;
 	   }
 	   
-	   public void abestiaGustatuZaio(Abestia a) {//FALTA SUMAR EN LA DATU BASE
+	   public void abestiaGustatuZaio(Abestia a) {
 		   a.likeEmanDiote();
 		   
 	   }
 	   
-	   public void abestiaLikeKendu(Abestia a) {//FALTA SUMAR EN LA DATU BASE
+	   public void abestiaLikeKendu(Abestia a) {
 		   a.likeKendu();
 		   
 	   }

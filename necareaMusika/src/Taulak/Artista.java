@@ -19,8 +19,8 @@ public class Artista {
 	private String biografia;
 	private int likeKop;
 	private String taldeIzena;
-	private ArrayList<String> izenak; //??
-	private ArrayList<Albuma> albumak; //??
+	private ArrayList<String> izenak; 
+	private ArrayList<Albuma> albumak; 
 	private ArrayList<Kontzertua> kontzertuak;
 	
 	public Artista(String pKodea, String pBio,int pLike, String pTalde) {
