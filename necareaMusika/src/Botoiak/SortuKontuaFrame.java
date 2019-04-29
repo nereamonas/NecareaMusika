@@ -205,24 +205,7 @@ public class SortuKontuaFrame extends JFrame {
 				}else {
 					necarea.erabiltzaileaGehitu(erabiltzailea,pasahitza,email);
 					label_1.setText("Zure erabiltzailea sortu da. ");
-					JButton btnSartu2 = new JButton("Saioa hasi");
-					panel.add(btnSartu2);
-					btnSartu2.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-					btnSartu2.setBackground(new Color(135, 206, 250));
-					btnSartu2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-					btnSartu2.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							SartuKontuanFrame b=null;
-							try {
-								b = new SartuKontuanFrame();
-							} catch (SQLException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							b.setVisible(true);
-							dispose();
-						}
-					});
+					button.setText("Saioa hasi");
 				}
 			}
 				}
