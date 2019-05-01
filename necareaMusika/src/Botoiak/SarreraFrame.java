@@ -99,6 +99,8 @@ public class SarreraFrame extends JFrame {
 		btnKontuaSortu.setFont(new Font("Yu Gothic UI", Font.BOLD, 14));
 		
 		JButton btnDatuBaseaDeskonektatu = new JButton("Datu basea deskonektatu eta itxi");
+		btnDatuBaseaDeskonektatu.setBackground(new Color(135, 206, 250));
+		btnDatuBaseaDeskonektatu.setFont(new Font("Yu Gothic UI", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
