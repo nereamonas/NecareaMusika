@@ -2,6 +2,7 @@
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -79,26 +80,34 @@ public class Abestia {
 		return this.letra;
 	}
 	
-	public void likeEmanDiote() {
+	public void likeEmanDiote() { //PreparedStatement hemen ez da beharrezkoa, baina biak erabili daitezke.
 		this.likeKop++;
 		try {
 			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "UPDATE " + "abestia" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			 PreparedStatement ps= konexioa.prepareStatement("UPDATE abestia SET likekop=? WHERE id=?");
+			 ps.setInt(1, this.likeKop);
+			 ps.setInt(2, this.id);
+			 ps.executeUpdate();
+		     //String Query = "UPDATE " + "abestia" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
+		     //java.sql.Statement st = konexioa.createStatement();
+		           // st.executeUpdate(Query);
 		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");
 		 }
 	}
 	
-	public void likeKendu() {
-		this.likeKop--;
+	public void likeKendu() {//PreparedStatement hemen ez da beharrezkoa, baina biak erabili daitezke.
+		this.likeKop--; 
 		try {
-			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "UPDATE " + "abestia" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			Connection konexioa=Konektatu.getConnection();
+			 PreparedStatement ps= konexioa.prepareStatement("UPDATE abestia SET likekop=? WHERE id=?");
+			 ps.setInt(1, this.likeKop);
+			 ps.setInt(2, this.id);
+			 ps.executeUpdate();
+		    // String Query = "UPDATE " + "abestia" + " SET likekop ="+ this.likeKop+" WHERE id = \"" + this.id + "\"";
+		     //java.sql.Statement st = konexioa.createStatement();
+		       //     st.executeUpdate(Query);
 		            //JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da like ematean");

@@ -1,6 +1,7 @@
 package Taulak;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Erabiltzaile {
 	private ArrayList<PlayList> nirePlayListak;
 	private ArrayList<Erabiltzaile> jarraitu;
 	private ArrayList<Erabiltzaile> jarraitzaile;
+	
 	
 	public Erabiltzaile(String pUser, String pPas, String pEmail) {
 		this.user=pUser;
@@ -235,10 +237,15 @@ public class Erabiltzaile {
 	public void pasahitzaAldatu(String pas) {
 		this.pasahitza=pas;
 		try {
-			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "UPDATE " + "erabiltzaile" + " SET pasahitza ="+ pas+" WHERE user = \"" + this.user + "\"";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			Connection konexioa=Konektatu.getConnection();
+			PreparedStatement ps=konexioa.prepareStatement("UPDATE erabiltzaile SET pasahitza=? WHERE user=?");
+    		ps.setString(1,pasahitza);
+    		ps.setString(2,this.user);
+    		ps.executeUpdate();
+			//Connection konexioa=Konektatu.getConnection();
+		    //String Query = "UPDATE " + "erabiltzaile" + " SET pasahitza ="+ pas+" WHERE user = \"" + this.user + "\"";
+		     //java.sql.Statement st = konexioa.createStatement();
+		           // st.executeUpdate(Query);
 		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
@@ -253,13 +260,19 @@ public class Erabiltzaile {
 		return this.user;
 	}
 	
-	public void gehituAbestia(Abestia a) {
+	public void gehituAbestia(Abestia a) { 
 		this.nireAbestiak.add(a);
 		try {
 			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "INSERT INTO " + "gordeabesti" + " VALUES("+ "\"" + a.getArtistaKode() + "\", "+ "\"" + a.getId() + "\", "+"\""+ this.user+ "\")";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			 PreparedStatement ps=konexioa.prepareStatement("INSERT INTO gordeabesti VALUES(?,?,?)");
+	    	 ps.setString(1,a.getArtistaKode());
+	    	 ps.setInt(2, a.getId());
+	    	 ps.setString(3, this.user);
+			 ps.executeUpdate();
+			 
+		     //String Query = "INSERT INTO " + "gordeabesti" + " VALUES("+ "\"" + a.getArtistaKode() + "\", "+ "\"" + a.getId() + "\", "+"\""+ this.user+ "\")";
+		     //java.sql.Statement st = konexioa.createStatement();
+		       //     st.executeUpdate(Query);
 		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
@@ -269,10 +282,15 @@ public class Erabiltzaile {
 	public void gehituAlbuma(Albuma a) {
 		this.nireAlbumak.add(a);
 		try {
-			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "INSERT INTO " + "gordealbum" + " VALUES("+ "\"" + a.getArtistaKode() + "\", "+ "\"" + a.getId() + "\", "+"\""+ this.user+ "\")";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			Connection konexioa=Konektatu.getConnection();
+			 PreparedStatement ps=konexioa.prepareStatement("INSERT INTO gordealbum VALUES(?,?,?)");
+	    	 ps.setString(1,a.getArtistaKode());
+	    	 ps.setInt(2, a.getId());
+	    	 ps.setString(3, this.user);
+			 ps.executeUpdate();
+		    // String Query = "INSERT INTO " + "gordealbum" + " VALUES("+ "\"" + a.getArtistaKode() + "\", "+ "\"" + a.getId() + "\", "+"\""+ this.getUser+ "\")";
+		     //java.sql.Statement st = konexioa.createStatement();
+		       //     st.executeUpdate(Query);
 		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
@@ -282,10 +300,14 @@ public class Erabiltzaile {
 	public void gehituArtista(Artista a) {
 		this.nireArtistak.add(a);
 		try {
-			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "INSERT INTO " + "jarraituartista" + " VALUES("+ "\"" + a.getKode() + "\", "+ "\"" + this.user+ "\")";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			Connection konexioa=Konektatu.getConnection();
+			 PreparedStatement ps=konexioa.prepareStatement("INSERT INTO jarraituartista VALUES(?,?)");
+	    	 ps.setString(1,a.getKode());
+	    	 ps.setString(2, this.user);
+			 ps.executeUpdate();
+		    // String Query = "INSERT INTO " + "jarraituartista" + " VALUES("+ "\"" + a.getKode() + "\", "+ "\"" + this.user+ "\")";
+		     //java.sql.Statement st = konexioa.createStatement();
+		       //     st.executeUpdate(Query);
 		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
@@ -295,10 +317,14 @@ public class Erabiltzaile {
 	public void gehituJarraitua(Erabiltzaile a) {
 		this.jarraitu.add(a);
 		try {
-			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "INSERT INTO " + "jarraituerabiltzaile" + " VALUES("+ "\"" + this.user + "\", "+ "\"" + a.getUser()+ "\")";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			Connection konexioa=Konektatu.getConnection();
+			 PreparedStatement ps=konexioa.prepareStatement("INSERT INTO jarraituerabiltzaile VALUES(?,?)");
+	    	 ps.setString(1,this.user);
+	    	 ps.setString(2, a.getUser());
+			 ps.executeUpdate();
+		     //String Query = "INSERT INTO " + "jarraituerabiltzaile" + " VALUES("+ "\"" + this.user + "\", "+ "\"" + a.getUser()+ "\")";
+		     //java.sql.Statement st = konexioa.createStatement();
+		       //     st.executeUpdate(Query);
 		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");
@@ -312,10 +338,15 @@ public class Erabiltzaile {
 	public void gehituPlaylist(PlayList pl) {
 		this.nirePlayListak.add(pl);
 		try {
-			 Connection konexioa=Konektatu.getConnection();
-		     String Query = "INSERT INTO " + "gordealbum" + " VALUES("+ "\"" + pl.getKode() + "\", "+ "\"" + pl.getErabiltzailea() + "\", "+"\""+ this.user+ "\")";
-		     java.sql.Statement st = konexioa.createStatement();
-		            st.executeUpdate(Query);
+			Connection konexioa=Konektatu.getConnection();
+			 PreparedStatement ps=konexioa.prepareStatement("INSERT INTO gordealbum VALUES(?,?,?)");
+	    	 ps.setInt(1,pl.getKode());
+	    	 ps.setString(2, pl.getErabiltzailea());
+	    	 ps.setString(3, this.user);
+			 ps.executeUpdate();
+		    // String Query = "INSERT INTO " + "gordealbum" + " VALUES("+ "\"" + pl.getKode() + "\", "+ "\"" + pl.getErabiltzailea() + "\", "+"\""+ this.user+ "\")";
+		     //java.sql.Statement st = konexioa.createStatement();
+		       //     st.executeUpdate(Query);
 		            JOptionPane.showMessageDialog(null, "Datuak ongi sartu dira");
 		 } catch (SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Errore bat sortu da datuak sortzean");

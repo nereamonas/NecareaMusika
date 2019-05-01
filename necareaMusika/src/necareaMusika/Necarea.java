@@ -24,6 +24,7 @@ public class Necarea {
 	    private static Necarea nireNecarea=null;
 	    
 	    private Connection konexioa=null;
+	    Konektatu k=null;
 	    
 	    private ArrayList<Erabiltzaile> erabiltzaileak;
 	    private ArrayList<Artista> artistak;
@@ -33,7 +34,7 @@ public class Necarea {
 	//eraikitzailea
 	            
 	    private Necarea() throws SQLException { 
-	    	Konektatu k= new Konektatu();
+	    	k= new Konektatu();
 	    	this.konexioa=k.getConnection();
 	    	this.erabiltzaileak= new ArrayList<Erabiltzaile>();
 	    	this.artistak= new ArrayList<Artista>();
@@ -675,5 +676,11 @@ public class Necarea {
 		   Erabiltzaile e=this.bilatuErabiltzailea(erabiltzailea);
 		   e.gehituPlaylist(pl);
 	   }
+
+
+	  public void deskonektatu() throws SQLException {
+		 this.k.deskonektatu();
+		  
+		     }
 
 }
