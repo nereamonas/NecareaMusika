@@ -121,6 +121,12 @@ public class ArtistakFrame extends JFrame {
 		JSeparator separator_4 = new JSeparator();
 		mnMenua.add(separator_4);
 		
+		JMenuItem mntmPlaylistaSortu = new JMenuItem("PlayLista sortu");
+		mnMenua.add(mntmPlaylistaSortu);
+		
+		JSeparator separator_2 = new JSeparator();
+		mnMenua.add(separator_2);
+		
 		JMenuItem mntmErabiltzaileak = new JMenuItem("Erabiltzaileak");
 		mntmErabiltzaileak.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mnMenua.add(mntmErabiltzaileak);
@@ -246,6 +252,23 @@ public class ArtistakFrame extends JFrame {
 				dispose();
 			}
 		});
+		
+		
+		//PlayList sortu
+		mntmPlaylistaSortu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PlayListSortuFrame plSortu=null;
+				try {
+					plSortu = new PlayListSortuFrame(erabiltzailea,p);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				plSortu.setVisible(true);
+				dispose();
+			}
+		});
+		
 		
 		//menu printzipalera itzuli
 		mntmMenuPrintzipaleraItzuli.addActionListener(new ActionListener() {

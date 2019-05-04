@@ -1,4 +1,4 @@
- package Botoiak;
+package Botoiak;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,38 +10,39 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.border.EmptyBorder;
-
-import Taulak.Albuma;
-import necareaMusika.Necarea;
-
-import javax.swing.JLabel;
-import javax.swing.GroupLayout;
+import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.JList;
+import javax.swing.border.EmptyBorder;
 
-public class AlbumInfoFrame extends JFrame {
+import necareaMusika.Necarea;
+import javax.swing.JTextPane;
+
+public class PlayListSortuFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args,String erabiltzailea, String p,String album) {
+	public static void main(String[] args, String erabiltzailea, String p) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlbumInfoFrame frame = new AlbumInfoFrame(erabiltzailea, p,album);
+					PlayListSortuFrame frame = new PlayListSortuFrame(erabiltzailea,p);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,12 +55,12 @@ public class AlbumInfoFrame extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public AlbumInfoFrame(String erabiltzailea, String p,String album) throws SQLException {
+	public PlayListSortuFrame(String erabiltzailea, String p) throws SQLException {
 		Necarea necarea=Necarea.getNecarea();
 		setBackground(new Color(245, 255, 250));
 		setTitle("Printzipala");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 536, 538);
+		setBounds(100, 100, 718, 411);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -151,6 +152,8 @@ public class AlbumInfoFrame extends JFrame {
 		mntmH.setBackground(new Color(245, 255, 250));
 		mntmH.setIcon(new ImageIcon("src/logo_txikia2.png"));
 		menuBar.add(mntmH);
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 255, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -161,188 +164,189 @@ public class AlbumInfoFrame extends JFrame {
 		panel.setBackground(new Color(175, 238, 238));
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lblAlbuma = new JLabel("Albuma");
-		lblAlbuma.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
-		panel.add(lblAlbuma);
+		JLabel lblNewLabel = new JLabel("Play lista sortu");
+		panel.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
+		lblNewLabel.setBackground(new Color(175, 238, 238));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(245, 255, 250));
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		
-		JLabel lblNewLabel = new JLabel("Izena:");
-		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		JButton btnPlayListBerri = new JButton("Play list berri bat sortu");
+
+		btnPlayListBerri.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnPlayListBerri.setBackground(new Color(135, 206, 250));
 		
-		JLabel lblArtista = new JLabel("Artista:");
-		lblArtista.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
-		JLabel lblAlbumKodea = new JLabel("Album kodea:");
-		lblAlbumKodea.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
-		JLabel lblIraupenTotala = new JLabel("Iraupen totala:");
-		lblIraupenTotala.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
-		JLabel lblIrtetzeData = new JLabel("Irtetze data:");
-		lblIrtetzeData.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
-		JLabel lblLikeKopurua = new JLabel("Like kopurua:");
-		lblLikeKopurua.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
-		JLabel lblAbestiKopurua = new JLabel("Abesti kopurua:");
-		lblAbestiKopurua.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		
-		JLabel lblAbestiak = new JLabel("Abestiak:");
-		lblAbestiak.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		JButton btnSortutaDudanPlay = new JButton("Sortuta dudan play list bati abestiak gehitu");
+		btnSortutaDudanPlay.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnSortutaDudanPlay.setBackground(new Color(135, 206, 250));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnAbestiraJoan = new JButton("Abestira joan");
-		btnAbestiraJoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAbestiraJoan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		btnAbestiraJoan.setBackground(new Color(135, 206, 250));
+		JButton btnHonetan = new JButton("Honetan");
+
+		btnHonetan.setBackground(new Color(135, 206, 250));
+		btnHonetan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
 		
-		JButton btnAbestiraErreproduzitu = new JButton("Abestia erreproduzitu");
-		btnAbestiraErreproduzitu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAbestiraErreproduzitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		btnAbestiraErreproduzitu.setBackground(new Color(135, 206, 250));
+		JLabel lblPlayListarenIzena = new JLabel("Play listaren izena sartu: ");
+		lblPlayListarenIzena.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		lblPlayListarenIzena.setVisible(false);
 		
-		JButton btnArtistaraJoan = new JButton("Artistara joan");
-		btnArtistaraJoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnArtistaraJoan.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		btnArtistaraJoan.setBackground(new Color(135, 206, 250));
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setVisible(false);
 		
-		Albuma a=necarea.bilatuAlbumaIzenaz(album);
-		JLabel label = new JLabel(album);
+		JLabel lblHautatuSartuNahi = new JLabel("Hautatu sartu nahi dituzun abestiak:");
+		lblHautatuSartuNahi.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		lblHautatuSartuNahi.setVisible(false);
 		
-		JLabel label_1 = new JLabel(necarea.artistarenIzenaLortu(a));
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setVisible(false);
 		
-		JLabel label_2 = new JLabel(""+necarea.albumarenId(a));
+		JLabel lblJadaSartutaDauden = new JLabel("Jada sartuta dauden abestiak:");
+		lblJadaSartutaDauden.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		lblJadaSartutaDauden.setVisible(false);
 		
-		JLabel label_3 = new JLabel(""+necarea.albumarenIraupena(a));
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setVisible(false);
 		
-		JLabel label_4 = new JLabel(""+necarea.albumarenData(a));
+		JButton btnGehitu = new JButton("Gehitu");
+		btnGehitu.setBackground(new Color(135, 206, 250));
+		btnGehitu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnGehitu.setVisible(false);
 		
-		JLabel label_5 = new JLabel(""+necarea.albumarenLikeKop(a));
+		JButton btnSortu = new JButton("Sortu");
+		btnSortu.setBackground(new Color(135, 206, 250));
+		btnSortu.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnSortu.setVisible(false);
 		
-		JLabel label_6 = new JLabel(""+necarea.albumarenAbestiKop(a));
+		JLabel label = new JLabel("");
 		
-		JButton btnAlbumaGordeNahi = new JButton("Albuma gorde nahi dut");
-		btnAlbumaGordeNahi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAlbumaGordeNahi.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		btnAlbumaGordeNahi.setBackground(new Color(135, 206, 250));
+		JButton btnBesteAbestiBat = new JButton("Beste abesti bat sartu");
+
+		btnBesteAbestiBat.setBackground(new Color(135, 206, 250));
+		btnBesteAbestiBat.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		btnBesteAbestiBat.setVisible(false);
 		
-		JButton btnLikeEman = new JButton("Like eman");
-		btnLikeEman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnLikeEman.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
-		btnLikeEman.setBackground(new Color(135, 206, 250));
+		JLabel label_1 = new JLabel("");
+		label_1.setVisible(false);
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(25)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblAbestiak)
-								.addComponent(lblNewLabel)
-								.addComponent(lblIrtetzeData)
-								.addComponent(lblAlbumKodea)
-								.addComponent(lblIraupenTotala)
-								.addComponent(lblArtista)
-								.addComponent(lblAbestiKopurua)
-								.addComponent(lblLikeKopurua))
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel_1.createSequentialGroup()
-											.addComponent(label_6)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panel_1.createSequentialGroup()
-													.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-														.addComponent(label)
-														.addComponent(label_1)
-														.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE))
-													.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-														.addGroup(gl_panel_1.createSequentialGroup()
-															.addGap(43)
-															.addComponent(btnAbestiraJoan)
-															.addGap(46))
-														.addGroup(gl_panel_1.createSequentialGroup()
-															.addPreferredGap(ComponentPlacement.RELATED)
-															.addComponent(btnAbestiraErreproduzitu, GroupLayout.PREFERRED_SIZE, 184, Short.MAX_VALUE))))
-												.addComponent(label_2)
-												.addComponent(label_3)))
-										.addGroup(gl_panel_1.createSequentialGroup()
-											.addComponent(label_5)
-											.addGap(137)
-											.addComponent(btnLikeEman, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel_1.createSequentialGroup()
-											.addComponent(label_4)
-											.addPreferredGap(ComponentPlacement.RELATED, 410, Short.MAX_VALUE))))
+									.addGap(63)
+									.addComponent(btnPlayListBerri))
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGap(141)
-									.addComponent(btnArtistaraJoan))))
+									.addGap(19)
+									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnHonetan))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(btnSortutaDudanPlay)))
+							.addGap(1))
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(label_1)
+							.addGap(69)))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(159)
-							.addComponent(btnAlbumaGordeNahi, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+							.addGap(45)
+							.addComponent(lblPlayListarenIzena)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnSortu))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(43)
+									.addComponent(lblHautatuSartuNahi))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(70)
+									.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)))
+							.addGap(18)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblJadaSartutaDauden)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(10)
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnBesteAbestiBat)
+										.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))))))
+					.addContainerGap(17, Short.MAX_VALUE))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap(371, Short.MAX_VALUE)
+					.addComponent(btnGehitu)
+					.addGap(254))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap(457, Short.MAX_VALUE)
+					.addComponent(label)
+					.addGap(235))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(37)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(label))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblArtista, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_1)
-						.addComponent(btnArtistaraJoan, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnPlayListBerri)
+						.addComponent(lblPlayListarenIzena)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSortu))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblAlbumKodea, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_2))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblIraupenTotala, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_3))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblIrtetzeData, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_4))
-							.addGap(22)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(label_5)
-								.addComponent(lblLikeKopurua, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(btnLikeEman, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblAbestiKopurua, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_6))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblAbestiak)
-					.addGap(11)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(btnAbestiraJoan, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+							.addGap(28)
+							.addComponent(label_1)
 							.addGap(18)
-							.addComponent(btnAbestiraErreproduzitu, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-							.addGap(45))
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
-					.addComponent(btnAlbumaGordeNahi, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+							.addComponent(btnSortutaDudanPlay, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(18)
+									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(40)
+									.addComponent(btnHonetan))))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(11)
+							.addComponent(label)
+							.addGap(21)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblHautatuSartuNahi)
+								.addComponent(lblJadaSartutaDauden))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnGehitu)
+						.addComponent(btnBesteAbestiBat))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
-		Vector elem=necarea.albumaDituenAbestiGuztiak(album);
+		JList list_2 = new JList();
+		scrollPane_2.setViewportView(list_2);
+		
+		JList list_1 = new JList();
+		scrollPane_1.setColumnHeaderView(list_1);
+		
+		Vector elem= necarea.ErabiltzaileakSortutakoPlayList(erabiltzailea);
 		JList list = new JList(elem);
-		scrollPane.setColumnHeaderView(list);
+		list.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
+		scrollPane.setViewportView(list);
+		
+		JLabel lblNikSortutakoPlay = new JLabel("Nik sortutako play listak");
+		lblNikSortutakoPlay.setFont(new Font("Yu Gothic UI", Font.BOLD, 12));
+		scrollPane.setColumnHeaderView(lblNikSortutakoPlay);
 		panel_1.setLayout(gl_panel_1);
 		
+	
 		//PlayList sortu
 		mntmPlaylistaSortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -569,80 +573,123 @@ public class AlbumInfoFrame extends JFrame {
 			}
 		});	
 		
-		//albuma gustatu
-		btnLikeEman.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(btnLikeEman.getText().equals("Like eman")){
-					necarea.albumaGustatuZaio(a);
-					label_5.setText(""+necarea.albumarenLikeKop(a));
-					btnLikeEman.setText("Like kendu");
+		
+		//PLAY LISTA SORTU
+		btnPlayListBerri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lblPlayListarenIzena.setVisible(true);
+				textField.setVisible(true);
+				btnSortu.setVisible(true);
+				label.setText("");
+				
+				btnSortu.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+				
+				String playlistIzena=textField.getText().trim();
+				if (textField.getText().length()==0) {
+					label.setText("Ez duzu ezer idatzi");
+					textField.setBackground(Color.RED);
 				}else {
-					if(btnLikeEman.getText().equals("Like kendu")) {
-						necarea.albumaLikeKendu(a);
-						label_5.setText(""+necarea.albumarenLikeKop(a));
-						btnLikeEman.setText("Like eman");
+					label_1.setText(playlistIzena);
+					necarea.sortuPlayList(erabiltzailea, playlistIzena);
+					label.setText("Play lista ongi sortu da");
+					Vector elem= necarea.ErabiltzaileakSortutakoPlayList(erabiltzailea);
+					JList list = new JList(elem);
+					lblHautatuSartuNahi.setVisible(true);
+					lblJadaSartutaDauden.setVisible(true);
+					scrollPane_1.setVisible(true);
+					scrollPane_2.setVisible(true);
+					btnGehitu.setVisible(true);
+					
+					Vector EzDituenAbesti = necarea.playListakEzDituenAbestiak(erabiltzailea, playlistIzena);
+					JList list_1 = new JList(EzDituenAbesti);
+					
+					Vector DituenAbesti = necarea.playListakDituenAbestiak(erabiltzailea, playlistIzena);
+					JList list_2 = new JList(DituenAbesti);	
+					
+					btnGehitu.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(list_1.getSelectedIndex()!=-1) {
+								necarea.playListariGehituAbestia (erabiltzailea, playlistIzena, (String) list_1.getSelectedValue());
+								Vector EzDituenAbesti = necarea.playListakEzDituenAbestiak(erabiltzailea, playlistIzena);
+								JList list_1 = new JList(EzDituenAbesti);
+								
+								Vector DituenAbesti = necarea.playListakDituenAbestiak(erabiltzailea, playlistIzena);
+								JList list_2 = new JList(DituenAbesti);
+								btnBesteAbestiBat.setVisible(true);
+							}
+						}
+						
+					});
+				
+				}
 					}
-				}
+				});
 			}
+			
 		});
 		
-		//artistara joan
-		btnArtistaraJoan.addActionListener(new ActionListener() {
+		btnBesteAbestiBat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArtistaInfoFrame artistaInfo=null;
-				try {
-					artistaInfo = new ArtistaInfoFrame(erabiltzailea,p,necarea.artistarenIzenaLortu(a));
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				artistaInfo.setVisible(true);
-				dispose();
+				btnBesteAbestiBat.setVisible(false);
+				Vector EzDituenAbesti = necarea.playListakEzDituenAbestiak(erabiltzailea, label_1.getText());
+				JList list_1 = new JList(EzDituenAbesti);
+				
+				Vector DituenAbesti = necarea.playListakDituenAbestiak(erabiltzailea, label_1.getText());
+				JList list_2 = new JList(DituenAbesti);	
+				
+				btnGehitu.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(list_1.getSelectedIndex()!=-1) {
+							necarea.playListariGehituAbestia (erabiltzailea, label_1.getText(), (String) list_1.getSelectedValue());
+							Vector EzDituenAbesti = necarea.playListakEzDituenAbestiak(erabiltzailea, textField.getText().trim());
+							JList list_1 = new JList(EzDituenAbesti);
+							
+							Vector DituenAbesti = necarea.playListakDituenAbestiak(erabiltzailea, label_1.getText());
+							JList list_2 = new JList(DituenAbesti);
+							btnBesteAbestiBat.setVisible(true);
+						}
+					}
+					
+				});
+				
 			}
 		});
 		
-		//abestira joan
-		btnAbestiraJoan.addActionListener(new ActionListener() {
+		btnHonetan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(list.getSelectedIndex()!=-1) {
-					AbestiaInfoFrame abestiInfo=null;
-					try {
-						abestiInfo = new AbestiaInfoFrame(erabiltzailea, p, (String) list.getSelectedValue());
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					abestiInfo.setVisible(true);
-					dispose();
+					label_1.setText((String) list.getSelectedValue());
+					lblHautatuSartuNahi.setVisible(true);
+					lblJadaSartutaDauden.setVisible(true);
+					scrollPane_1.setVisible(true);
+					scrollPane_2.setVisible(true);
+					btnGehitu.setVisible(true);
+					
+					Vector EzDituenAbesti = necarea.playListakEzDituenAbestiak(erabiltzailea, label_1.getText());
+					JList list_1 = new JList(EzDituenAbesti);
+					
+					Vector DituenAbesti = necarea.playListakDituenAbestiak(erabiltzailea, label_1.getText());
+					JList list_2 = new JList(DituenAbesti);	
+					
+					btnGehitu.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(list_1.getSelectedIndex()!=-1) {
+								necarea.playListariGehituAbestia (erabiltzailea, label_1.getText(), (String) list_1.getSelectedValue());
+								Vector EzDituenAbesti = necarea.playListakEzDituenAbestiak(erabiltzailea, label_1.getText());
+								JList list_1 = new JList(EzDituenAbesti);
+								
+								Vector DituenAbesti = necarea.playListakDituenAbestiak(erabiltzailea, label_1.getText());
+								JList list_2 = new JList(DituenAbesti);
+								btnBesteAbestiBat.setVisible(true);
+							}
+						}
+						
+					});
 				}
 			}
 		});
 		
-		//abestia erreproduzitu
-		btnAbestiraErreproduzitu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(list.getSelectedIndex()!=-1) {
-					PlayerFrame play=null;
-					try {
-						play= new PlayerFrame((String) list.getSelectedValue(),erabiltzailea,p);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					play.setVisible(true);
-					dispose();
-				}
-			}
-		});
 		
-		//albuma gorde
-		btnAlbumaGordeNahi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				necarea.albumaGorde(erabiltzailea, album);
-			}
-		});
-		
-	
 	}
-
 }

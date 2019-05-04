@@ -123,6 +123,12 @@ public class ErabiltzaileakFrame extends JFrame {
 		JSeparator separator_4 = new JSeparator();
 		mnMenua.add(separator_4);
 		
+		JMenuItem mntmPlaylistaSortu = new JMenuItem("PlayLista sortu");
+		mnMenua.add(mntmPlaylistaSortu);
+		
+		JSeparator separator_2 = new JSeparator();
+		mnMenua.add(separator_2);
+		
 		JMenuItem mntmErabiltzaileak = new JMenuItem("Erabiltzaileak");
 		mntmErabiltzaileak.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mnMenua.add(mntmErabiltzaileak);
@@ -228,6 +234,23 @@ public class ErabiltzaileakFrame extends JFrame {
 		list.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
 		scrollPane.setViewportView(list);
 		panel_1.setLayout(gl_panel_1);
+		
+		//PlayList sortu
+		mntmPlaylistaSortu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PlayListSortuFrame plSortu=null;
+				try {
+					plSortu = new PlayListSortuFrame(erabiltzailea,p);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				plSortu.setVisible(true);
+				dispose();
+			}
+		});
+		
+		
 		
 		//Saioa itxi
 		mntmSaioaItxi.addActionListener(new ActionListener() {

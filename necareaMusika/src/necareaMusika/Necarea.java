@@ -680,7 +680,37 @@ public class Necarea {
 
 	  public void deskonektatu() throws SQLException {
 		 this.k.deskonektatu();
+	  }
+	  
+	  //HAY QUE HACER ESTOS METODOS
+	  public void sortuPlayList(String erabiltzailea, String playlistIzena) {
+		  //hay q crear un playlist que la ha hecho ese erabiltzaile. El nombre de la play list es playlistIzena
+	  }
+	  
+	  public void playListariGehituAbestia (String erabiltzailea, String playlistIzena, String abestia) {
+		  //A la play list playlistIzena q ha creado ese erabiltzaile añadirle esa cancion
 		  
-		     }
+	  }
+	  
+	  public Vector playListakDituenAbestiak(String erabiltzailea, String playlistIzena) {
+		  //Coger las canciones que hay en esa playlist
+		  Vector elementuak= new Vector();
+		  //--------------------------
+		  return elementuak;
+	  }
+	  
+	  public Vector playListakEzDituenAbestiak(String erabiltzailea, String playlistIzena) {
+		  //Coger las canciones que no hay en esa playlist
+		  Vector elementuak= new Vector();
+		  //--------------------------
+		  return elementuak;
+	  }
+	  
+	  public Vector ErabiltzaileakSortutakoPlayList(String erabiltzailea) {
+		//Coger las playlist que ha creadoe sa persona
+		  Vector elementuak= new Vector();
+		  //--------------------------
+		  return elementuak;
+	  }
 
 }
